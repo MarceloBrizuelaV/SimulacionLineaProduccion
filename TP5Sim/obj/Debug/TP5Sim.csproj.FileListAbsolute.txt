@@ -8,3 +8,13 @@ C:\Users\franb\Desktop\TP5SIM\TP5Sim\TP5Sim\bin\Debug\TP5Sim.exe
 C:\Users\franb\Desktop\TP5SIM\TP5Sim\TP5Sim\bin\Debug\TP5Sim.pdb
 C:\Users\franb\Desktop\TP5SIM\TP5Sim\TP5Sim\obj\Debug\TP5Sim.exe
 C:\Users\franb\Desktop\TP5SIM\TP5Sim\TP5Sim\obj\Debug\TP5Sim.pdb
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\bin\Debug\TP5Sim.exe.config
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\bin\Debug\TP5Sim.exe
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\bin\Debug\TP5Sim.pdb
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csprojAssemblyReference.cache
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.FormPrincipal.resources
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.Properties.Resources.resources
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csproj.GenerateResource.cache
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csproj.CoreCompileInputs.cache
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.exe
+C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.pdb

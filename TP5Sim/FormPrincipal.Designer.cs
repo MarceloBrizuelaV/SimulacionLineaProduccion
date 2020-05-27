@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.btnSimular = new System.Windows.Forms.Button();
-            this.txtDesde = new System.Windows.Forms.TextBox();
-            this.txtHasta = new System.Windows.Forms.TextBox();
-            this.txtCantidadSim = new System.Windows.Forms.TextBox();
-            this.labelDesde = new System.Windows.Forms.Label();
-            this.labelHasta = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.Fila = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +62,13 @@
             this.TIAreaRuedas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TITotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadTriciclos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSimular = new System.Windows.Forms.Button();
+            this.txtDesde = new System.Windows.Forms.TextBox();
+            this.txtHasta = new System.Windows.Forms.TextBox();
+            this.txtCantidadSim = new System.Windows.Forms.TextBox();
+            this.labelDesde = new System.Windows.Forms.Label();
+            this.labelHasta = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,66 +114,6 @@
             this.dataGrid.Size = new System.Drawing.Size(1423, 300);
             this.dataGrid.TabIndex = 0;
             this.dataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_CellContentClick);
-            // 
-            // btnSimular
-            // 
-            this.btnSimular.Location = new System.Drawing.Point(630, 548);
-            this.btnSimular.Name = "btnSimular";
-            this.btnSimular.Size = new System.Drawing.Size(138, 36);
-            this.btnSimular.TabIndex = 1;
-            this.btnSimular.Text = "Simular";
-            this.btnSimular.UseVisualStyleBackColor = true;
-            // 
-            // txtDesde
-            // 
-            this.txtDesde.Location = new System.Drawing.Point(556, 377);
-            this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(118, 20);
-            this.txtDesde.TabIndex = 2;
-            // 
-            // txtHasta
-            // 
-            this.txtHasta.Location = new System.Drawing.Point(721, 377);
-            this.txtHasta.Name = "txtHasta";
-            this.txtHasta.Size = new System.Drawing.Size(118, 20);
-            this.txtHasta.TabIndex = 3;
-            this.txtHasta.TextChanged += new System.EventHandler(this.TxtHasta_TextChanged);
-            // 
-            // txtCantidadSim
-            // 
-            this.txtCantidadSim.Location = new System.Drawing.Point(556, 427);
-            this.txtCantidadSim.Name = "txtCantidadSim";
-            this.txtCantidadSim.Size = new System.Drawing.Size(118, 20);
-            this.txtCantidadSim.TabIndex = 4;
-            // 
-            // labelDesde
-            // 
-            this.labelDesde.AutoSize = true;
-            this.labelDesde.Location = new System.Drawing.Point(560, 362);
-            this.labelDesde.Name = "labelDesde";
-            this.labelDesde.Size = new System.Drawing.Size(38, 13);
-            this.labelDesde.TabIndex = 5;
-            this.labelDesde.Text = "Desde";
-            // 
-            // labelHasta
-            // 
-            this.labelHasta.AutoSize = true;
-            this.labelHasta.Location = new System.Drawing.Point(725, 363);
-            this.labelHasta.Name = "labelHasta";
-            this.labelHasta.Size = new System.Drawing.Size(35, 13);
-            this.labelHasta.TabIndex = 6;
-            this.labelHasta.Text = "Hasta";
-            this.labelHasta.Click += new System.EventHandler(this.LabelHasta_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(553, 411);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Cantidad de Simulaciones";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // Fila
             // 
@@ -373,11 +313,72 @@
             this.CantidadTriciclos.Name = "CantidadTriciclos";
             this.CantidadTriciclos.ReadOnly = true;
             // 
+            // btnSimular
+            // 
+            this.btnSimular.Location = new System.Drawing.Point(630, 548);
+            this.btnSimular.Name = "btnSimular";
+            this.btnSimular.Size = new System.Drawing.Size(138, 36);
+            this.btnSimular.TabIndex = 1;
+            this.btnSimular.Text = "Simular";
+            this.btnSimular.UseVisualStyleBackColor = true;
+            this.btnSimular.Click += new System.EventHandler(this.btnSimular_Click);
+            // 
+            // txtDesde
+            // 
+            this.txtDesde.Location = new System.Drawing.Point(556, 377);
+            this.txtDesde.Name = "txtDesde";
+            this.txtDesde.Size = new System.Drawing.Size(118, 20);
+            this.txtDesde.TabIndex = 2;
+            // 
+            // txtHasta
+            // 
+            this.txtHasta.Location = new System.Drawing.Point(721, 377);
+            this.txtHasta.Name = "txtHasta";
+            this.txtHasta.Size = new System.Drawing.Size(118, 20);
+            this.txtHasta.TabIndex = 3;
+            this.txtHasta.TextChanged += new System.EventHandler(this.TxtHasta_TextChanged);
+            // 
+            // txtCantidadSim
+            // 
+            this.txtCantidadSim.Location = new System.Drawing.Point(556, 427);
+            this.txtCantidadSim.Name = "txtCantidadSim";
+            this.txtCantidadSim.Size = new System.Drawing.Size(118, 20);
+            this.txtCantidadSim.TabIndex = 4;
+            // 
+            // labelDesde
+            // 
+            this.labelDesde.AutoSize = true;
+            this.labelDesde.Location = new System.Drawing.Point(560, 362);
+            this.labelDesde.Name = "labelDesde";
+            this.labelDesde.Size = new System.Drawing.Size(38, 13);
+            this.labelDesde.TabIndex = 5;
+            this.labelDesde.Text = "Desde";
+            // 
+            // labelHasta
+            // 
+            this.labelHasta.AutoSize = true;
+            this.labelHasta.Location = new System.Drawing.Point(725, 363);
+            this.labelHasta.Name = "labelHasta";
+            this.labelHasta.Size = new System.Drawing.Size(35, 13);
+            this.labelHasta.TabIndex = 6;
+            this.labelHasta.Text = "Hasta";
+            this.labelHasta.Click += new System.EventHandler(this.LabelHasta_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(553, 411);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(129, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Cantidad de Simulaciones";
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 596);
+            this.ClientSize = new System.Drawing.Size(1284, 596);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelHasta);
             this.Controls.Add(this.labelDesde);
