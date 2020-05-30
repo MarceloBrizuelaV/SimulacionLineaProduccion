@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TP5Sim
 {
@@ -21,7 +23,7 @@ namespace TP5Sim
 
         public double[,] generarVector() 
         {
-            double[,] vector = new double[1, 29];
+            double[,] vector = new double[2, 29];
 
             return vector;
         }
@@ -64,5 +66,66 @@ namespace TP5Sim
                 }
             }
         }
+
+        //------------------------ COLAS MAXIMAS -----------------------------------
+        public int colaMaximaMotores(DataGridView grilla)
+        {
+            int stockMotores_0 = Convert.ToInt32(grilla.Rows[0].Cells[9].Value);
+            int stockMotores_1 = Convert.ToInt32(grilla.Rows[1].Cells[9].Value);
+            int CM; 
+
+            if (stockMotores_1 > stockMotores_0)
+            {
+                CM = stockMotores_1;
+            }
+            else
+            {
+                CM = stockMotores_0;
+            }
+            
+            return CM;
+        }
+
+        public int colaMaximaAM(DataGridView grilla)
+        {
+       
+            int stockAM_0 = Convert.ToInt32(grilla.Rows[0].Cells[12].Value);
+            int stockAM_1 = Convert.ToInt32(grilla.Rows[1].Cells[12].Value);
+            int CM;
+
+            if (stockAM_1 > stockAM_0)
+            {
+                CM = stockAM_1;
+            }
+            else
+            {
+                CM = stockAM_0;
+            }
+
+            return CM;
+        }
+
+        public int colaMaximaRuedas(DataGridView grilla)
+        {
+       
+            int stockRuedas_0 = Convert.ToInt32(grilla.Rows[0].Cells[18].Value);
+            int stockRuedas_1 = Convert.ToInt32(grilla.Rows[1].Cells[18].Value);
+            int CM;
+
+            if (stockRuedas_1 > stockRuedas_0)
+            {
+                CM = stockRuedas_1;
+            }
+            else
+            {
+                CM = stockRuedas_0;
+            }
+
+            return CM;
+        }
+
+        //----------------------------------------------------------------------------------------
+
+
     }
 }
