@@ -26,6 +26,7 @@ namespace TP5Sim
             return vector;
         }
 
+    
         public void generarTabla(double [,] vector)
         {
             for (int i = 0; i < vector.GetLength(0); i++)
@@ -63,6 +64,59 @@ namespace TP5Sim
                         break;
                 }
             }
+        }
+
+        //Estado LIBRE = 0
+        //Estado OCUPADO = 1
+        public int tiempoInactividadAR(double[,] vector)
+        {
+            int TI = 0;
+
+            //Tiempo de inactividad del Area de Ruedas
+            int estadoEAct = Convert.ToInt32(vector[1, 21]);
+
+            if (estadoEAct == 0)
+            {
+                //Seria el TI de la fila anterior mas el reloj anterior mas el inicial
+                TI = Convert.ToInt32(vector[0,23]) + Convert.ToInt32(vector[0, 2]) - Convert.ToInt32(vector[1, 2]);
+            }
+            else
+            {
+                //Seria el TI de la fila anterior, ya que esta ocupado.
+                TI = Convert.ToInt32(vector[0, 23]);
+            }
+    
+            return TI;
+        }
+
+        public int tiempoInactividadE(double[,] vector) 
+        {
+            int TI = 0;
+
+            //Tiempo de inactividad del Area de ensamblaje
+            int estadoE = Convert.ToInt32(vector[1, 13]);
+
+            if (estadoE == 0)
+            {
+                //Seria el TI de la fila anterior mas el reloj anterior mas el inicial
+                TI = Convert.ToInt32(vector[0, 22]) + Convert.ToInt32(vector[0, 2]) - Convert.ToInt32(vector[1, 2]);
+            }
+            else
+            {
+                //Seria el TI de la fila anterior, ya que esta ocupada
+                TI = Convert.ToInt32(vector[0, 22]);
+            }
+
+            return TI;
+        }
+
+        public int tiempoInactividadTotal(double[,] vector, int ruedas, int ensamblaje)
+        {
+            //Aca lo que hago es la sumatoria del TI de rueda y el TI de ensamblaje
+
+            int tit = ruedas + ensamblaje + Convert.ToInt32(vector[0,24]);
+
+            return tit;
         }
     }
 }
