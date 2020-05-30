@@ -10,13 +10,14 @@ namespace TP5Sim
     {
         //Posiciones de las columnas
         // 0 = Fila 1=Evento 2=Reloj 
-        // 3=Tiempo llegada A 4=Proxima Llegada A 5=Stock A 6=Estado A
-        // 7=RND M 8=Tiempo llegada M 9= Proxima Llegada M 10= Stock M 11=Estado M
-        // 12= Tiempo ensamblaje E 13= Proximo ensamblaje E 14= Estado E
-        // 15= RND1 R 16= RND2 R 17=Tiempo llegada R 18= Proxima llegada R 19= Stock R 20= Estado R
-        // 21= Tiempo ensamblaje AR 22= Proximo Triciclo AR 23= Estado AR
-        // 24= Tricilo1 25= Triciclo2 26= Tricilo3 27= Tricilo4 28= Triciclo 5
-        // 29= TI area ensamblaje 30= TI area rueda 31= TI total 32= Cantidad de triciclos
+        // 3=Tiempo llegada A 4=Proxima Llegada A 5=Stock A
+        // 6=RND M 7=Tiempo llegada M 8= Proxima Llegada M 9= Stock M 
+        // 10= Tiempo ensamblaje E 11= Proximo ensamblaje E 12= Stock AM 13= Estado AM
+        // 14= RND1 R 15= RND2 R 16=Tiempo llegada R 17= Proxima llegada R 18= Stock R 
+        // 19= Tiempo ensamblaje AR 20= Proximo Triciclo AR  21 = Estado AR
+        // 
+        // 22= TI area ensamblaje 23= TI area rueda 24= TI total 25= Cantidad de triciclos 
+        //26=Cola Maxima Motores 27= Cola Maxima Ruedas 28= Cola maxima AM
 
         public double[,] generarVector() 
         {
