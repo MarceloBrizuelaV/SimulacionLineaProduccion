@@ -25,5 +25,40 @@ namespace TP5Sim
 
             return vector;
         }
+
+
+        //Esta funcion recorre el vector de estado y devuelve el tiempo menor para determinar el proximo evento por venir
+        private double[] buscarMenor(double[] vector)
+        {
+            //Configuramos el menor como la primera columna que chequear
+            double menor = vector[4];
+            int posicion = 4;
+            //Vector con la posicion y el valor menor
+            double[] vectorMenor = { 4, menor };
+            //El array contiene las posiciones de las columnas para chequear
+            int[] numeros = { 8, 11, 17, 20 };
+            //Columnas que chequear
+            //4 Proxima llegada A
+            //8 Proxima llegada M
+            //11 Proximo ensamblaje
+            //17 Proxima llegada
+            //20 Proximo triciclo
+            for (int i = 8; i <= 20; i++)
+            {
+                if (numeros.Contains(i)) {
+                    if (vector[i] < menor)
+                    {
+                        menor = vector[i];
+                        posicion = i;
+                    };
+                };
+            };
+            vectorMenor[0] = posicion;
+            vectorMenor[1] = menor;
+            return vectorMenor;
+        }
+
+
     }
+
 }
