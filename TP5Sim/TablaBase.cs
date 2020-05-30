@@ -76,7 +76,35 @@ namespace TP5Sim
                     
                     //Proximo ensamblaje
                     case 11:
-                        
+                        //Colocacion de Ruedas
+                        //Esta el area de ruedas libre?
+                        if (vector[0,21] == 0){
+                            //Calcular Proximo Triciclo -- Tiempo de Reloj + 5 Minutos
+                            vector[1, 20] = vector[1, 2] + 5;
+                            //Actualizar Stock de Ruedas -3
+                            vector[1, 18] = vector[0, 18] - 3;
+                            //Actualizar Fin_Area_Ruedas a Ocupado
+                            vector[1, 21] = 1;
+                        }
+                        else
+                        {
+                            //En caso de que el area de ruedas este ocupada sumamos un Armazon + Motor al Stock esperando la desocupacion
+                            //Stock AM + 1
+                            vector[1, 12] = vector[0, 12] + 1;
+                         }
+                        //Comienzo de Nuevo ensamblaje, verificamos que haya un Motor y un Armazon
+                        if (vector[0, 5] > 0 && vector[0, 9] > 0)
+                        {
+                            //Calculamos la finalizacion del proximo ensamblaje
+                            vector[1, 11] = vector[1, 2] + 10;
+                            //Cambiamos el estado del area de ensamblaje a Ocupado
+                            vector[1, 13] = 1;
+                        }
+                        else
+                        {
+                            //Cambiamos el estado del area de ensamblaje a libre
+                            vector[1, 13] = 0;
+                        }
                         break;
                     
                     //Proxima llegada de ruedas
