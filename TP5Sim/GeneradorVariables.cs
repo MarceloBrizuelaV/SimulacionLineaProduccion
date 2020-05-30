@@ -12,7 +12,8 @@ public class GeneradorVariables {
     Random rnd = new Random();
 
     //Distribucion Uniforme
-    public double Uniforme(int limiteInferior, int limiteSuperior){
+    public double Uniforme(int limiteInferior, int limiteSuperior, double rnd)
+    {
         int a = limiteInferior;
         int b = limiteSuperior;
 
@@ -20,7 +21,7 @@ public class GeneradorVariables {
         double valores;
             //Se suma A a un numero aleatorio que se encuentra entre
             //el Delta que se encuentre entre A y B      
-            valores = a + rnd.Next(0,b - a);
+            valores = a + rnd * (b - a);
           
         return valores;
     }

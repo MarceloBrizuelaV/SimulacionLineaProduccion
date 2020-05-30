@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration.Assemblies;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +22,17 @@ namespace TP5Sim
 
         public double[,] generarVector() 
         {
-            double[,] vector = new double[1, 29];
+            double[,] vector = new double[2, 29];
 
             return vector;
         }
 
         public void generarTabla(double [,] vector)
         {
-            for (int i = 0; i < vector.GetLength(0); i++)
-            {
+            GeneradorVariables generador = new GeneradorVariables();
+            Random rnd = new Random();
 
-                switch (vector[1,2])
+            switch (vector[1,1])
                 {
                     //Proxima Llegada armazon
                     case 4:
@@ -40,7 +41,48 @@ namespace TP5Sim
                     
                     //Proxima Llegada Motor
                     case 8:
+                    //Obtengo el reloj
+                    vector[1, 2] = vector[0, 999];
+
+                    //Agrego 5 motores al stock
+                    vector[1, 9] = vector[1, 9] + 5;
+
+                    //Verifico si el area ensamblaje esta libre y si disponemos de armazones
+                    int estado = Convert.ToInt32(vector[0, 13]);
+                    int cantidadArmazon = Convert.ToInt32(vector[0, 5]);
+
+                    if (estado == 0 && cantidadArmazon > 0)
+                    {
+                        //Asigno el estado ocupado
+                        vector[1, 13] = 1;
+
+                        //Resto los stock de Armazon y Motor
+                        vector[1, 5] = vector[0, 5] - 1;
+                        vector[1, 9] = vector[0, 9] - 1;
+
+                    }
+
+                    //Calculo la proxima llegada de motores
+                    double random = Convert.ToDouble(rnd);
+                    int limiteInf = 30;
+                    int limiteSup = 40;
+                    double tiempoLlegada = generador.Uniforme(limiteInf, limiteSup, random);
+
+                    //Asigno RND
+                    vector[1, 6] = random;
+                    //Asigno Tiempo Llegada
+                    vector[1, 7] = tiempoLlegada;
+                    //Asigno Proxima Llegada
+                    vector[1, 8] = tiempoLlegada + vector[1, 2];
+                    
+
+                    //Copio las proximas llegadas
+                    vector[1, 4] = vector[0, 4];
+                    vector[1, 11] = vector[0, 11];
+                    vector[1, 17] = vector[0,17];
+                    vector[1, 20] = vector[0, 20];
                         
+
                         break;
                     
                     //Proximo ensamblaje
@@ -62,7 +104,6 @@ namespace TP5Sim
                         
                         break;
                 }
-            }
         }
     }
 }
