@@ -57,8 +57,5 @@ namespace TP5Sim
             vectorMenor[1] = menor;
             return vectorMenor;
         }
-
-
     }
-
 }
