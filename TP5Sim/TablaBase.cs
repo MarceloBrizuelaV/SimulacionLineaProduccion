@@ -67,7 +67,26 @@ namespace TP5Sim
             
                 //Proxima Llegada armazon
                 case 4:
-
+                    //Verifica Si el area de ensamblaje esta libre (0 es libre)
+                    if (vector[0, 13] == 0)
+                    {
+                        //Verifica si hay motores (Si es diferente de 0 Hay)
+                        if (vector[0, 9] != 0)
+                        {
+                            vector[1, 9] = vector[0, 9] - 1;
+                            vector[1, 13] = 1;
+                            vector[1, 11] = vector[1, 2] + vector[1, 10];
+                        }
+                        else
+                        {
+                            vector[1, 5] = vector[0, 5] + 1;
+                        }
+                    }
+                    //No esta libre el area de ensamblaje
+                    else
+                    {
+                        vector[1, 5] = vector[0, 5] + 1;
+                    }
                     break;
 
                 //Proxima Llegada Motor
