@@ -41,8 +41,6 @@ namespace TP5Sim
         26=Cola Maxima Motores 
         27= Cola Maxima Ruedas 
         28= Cola maxima AM
-
-
     */
         public double[,] generarVector() 
         {
