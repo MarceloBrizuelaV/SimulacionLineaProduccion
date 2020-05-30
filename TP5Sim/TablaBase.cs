@@ -18,7 +18,7 @@ namespace TP5Sim
         // 19= Tiempo ensamblaje AR 20= Proximo Triciclo AR  21 = Estado AR
         // 
         // 22= TI area ensamblaje 23= TI area rueda 24= TI total 25= Cantidad de triciclos 
-        //26=Cola Maxima Motores 27= Cola Maxima Ruedas 28= Cola maxima AM
+        // 26=Cola Maxima Motores 27= Cola Maxima Ruedas 28= Cola maxima AM
 
         public double[,] generarVector() 
         {
@@ -28,22 +28,28 @@ namespace TP5Sim
         }
 
 
-        public void generarTabla(double [,] vector)
+        public void generarTabla(double[,] vector)
         {
             GeneradorVariables generador = new GeneradorVariables();
             Random rnd = new Random();
 
-            switch (vector[1,1])
-                {
-                    //Proxima Llegada armazon
-                    case 4:
-                        
-                        break;
-                    
-                    //Proxima Llegada Motor
-                    case 8:
-                    //Obtengo el reloj
-                    vector[1, 2] = vector[0, 999];
+            double[] vectorMenor = buscarMenor(vector);
+
+            //Obtengo el evento
+            vector[1, 1] = vectorMenor[0];
+            //Obtengo el reloj
+            vector[1, 2] = vectorMenor[1];
+
+            switch (vector[1, 1])
+            {
+                //Proxima Llegada armazon
+                case 4:
+
+                    break;
+
+                //Proxima Llegada Motor
+                case 8:
+
 
                     //Agrego 5 motores al stock
                     vector[1, 9] = vector[1, 9] + 5;
@@ -75,43 +81,75 @@ namespace TP5Sim
                     vector[1, 7] = tiempoLlegada;
                     //Asigno Proxima Llegada
                     vector[1, 8] = tiempoLlegada + vector[1, 2];
-                    
+
 
                     //Copio las proximas llegadas
+                    //Llegada Armazon
                     vector[1, 4] = vector[0, 4];
+                    //Fin Ensamblaje
                     vector[1, 11] = vector[0, 11];
-                    vector[1, 17] = vector[0,17];
+                    //Llegada Ruedas
+                    vector[1, 17] = vector[0, 17];
+                    //Fin Ensamblaje Ruedas
                     vector[1, 20] = vector[0, 20];
-                        
-
-                        break;
-                    
-                    //Proximo ensamblaje
-                    case 11:
-                        
-                        break;
-                    
-                    //Proxima llegada de ruedas
-                    case 17:
-                        
-                        break;
-                    
-                    //Proximo Triciclo
-                    case 20:
-                        
-                        break;
-
-                    default:
-                        
-                        break;
-                }
 
 
+                    break;
+
+                //Proximo ensamblaje
+                case 11:
+
+                    break;
+
+                //Proxima llegada de ruedas
+                case 17:
+
+                    break;
+
+                //Fin Area Ruedas
+                case 20:
+                    //Asigno estado libre al area de ruedas
+                    vector[1, 21] = 0;
+
+                    //Sumo 1 a la columna cantidad de triciclos
+                    vector[1, 25] = vector[1, 25] + 1;
+
+                    //Reviso si hay ruedas disponibles y AM disponibles
+                    if (vector[0, 18] >= 3 && vector[0, 12] > 0)
+                    {
+                        //Asigno tiempo llegada
+                        vector[1, 19] = 5;
+
+                        //Asigno proxima llegada
+                        vector[1,20] = 5 + vector[1,2];
+
+                        //Resto la cantidad de ruedas utilizadas
+                        vector[1, 18] = vector[0,18] - 3;
+                    }
+
+                    //Copio las proximas llegadas
+                    //Llegada Armazon
+                    vector[1, 4] = vector[0, 4];
+                    //Fin Ensamblaje
+                    vector[1, 8] = vector[0, 8];
+                    //Llegada Ruedas
+                    vector[1, 11] = vector[0, 11];
+                    //Fin Ensamblaje Ruedas
+                    vector[1, 17] = vector[0, 17];
+
+                    break;
+
+                default:
+
+                    break;
+            }
+
+        }
         //Esta funcion recorre el vector de estado y devuelve el tiempo menor para determinar el proximo evento por venir
-        private double[] buscarMenor(double[] vector)
+        private double[] buscarMenor(double[,] vector)
         {
             //Configuramos el menor como la primera columna que chequear
-            double menor = vector[4];
+            double menor = vector[0,4];
             int posicion = 4;
             //Vector con la posicion y el valor menor
             double[] vectorMenor = { 4, menor };
@@ -126,9 +164,9 @@ namespace TP5Sim
             for (int i = 8; i <= 20; i++)
             {
                 if (numeros.Contains(i)) {
-                    if (vector[i] < menor)
+                    if (vector[0,i] < menor)
                     {
-                        menor = vector[i];
+                        menor = vector[0,i];
                         posicion = i;
                     };
                 };
