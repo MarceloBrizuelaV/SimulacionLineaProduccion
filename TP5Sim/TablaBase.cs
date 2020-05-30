@@ -21,7 +21,7 @@ namespace TP5Sim
 
         public double[,] generarVector() 
         {
-            double[,] vector = new double[1, 33];
+            double[,] vector = new double[1, 29];
 
             return vector;
         }
@@ -56,6 +56,44 @@ namespace TP5Sim
             vectorMenor[0] = posicion;
             vectorMenor[1] = menor;
             return vectorMenor;
+        }
+        public void generarTabla(double [,] vector)
+        {
+            for (int i = 0; i < vector.GetLength(0); i++)
+            {
+
+                switch (vector[1,2])
+                {
+                    //Proxima Llegada armazon
+                    case 4:
+                        
+                        break;
+                    
+                    //Proxima Llegada Motor
+                    case 8:
+                        
+                        break;
+                    
+                    //Proximo ensamblaje
+                    case 11:
+                        
+                        break;
+                    
+                    //Proxima llegada de ruedas
+                    case 17:
+                        
+                        break;
+                    
+                    //Proximo Triciclo
+                    case 20:
+                        
+                        break;
+
+                    default:
+                        
+                        break;
+                }
+            }
         }
     }
 }

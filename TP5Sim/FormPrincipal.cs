@@ -53,7 +53,7 @@ namespace TP5Sim
         //Boton
         private void btnSimular_Click(object sender, EventArgs e)
         {
-            txtCantidadSim.Text = d
+            //txtCantidadSim.Text = d
         }
     }
 }
