@@ -127,16 +127,9 @@ namespace TP5Sim
                     vector[1, 8] = tiempoLlegada + vector[1, 2];
 
 
-                    //Copio las proximas llegadas
-                    //Llegada Armazon
-                    vector[1, 4] = vector[0, 4];
-                    //Fin Ensamblaje
-                    vector[1, 11] = vector[0, 11];
-                    //Llegada Ruedas
-                    vector[1, 17] = vector[0, 17];
-                    //Fin Ensamblaje Ruedas
-                    vector[1, 20] = vector[0, 20];
                     break;
+                    
+
 
                 //Proximo ensamblaje
                         case 11:
@@ -232,15 +225,6 @@ namespace TP5Sim
                         vector[1, 18] = vector[0,18] - 3;
                     }
 
-                    //Copio las proximas llegadas
-                    //Llegada Armazon
-                    vector[1, 4] = vector[0, 4];
-                    //Fin Ensamblaje
-                    vector[1, 8] = vector[0, 8];
-                    //Llegada Ruedas
-                    vector[1, 11] = vector[0, 11];
-                    //Fin Ensamblaje Ruedas
-                    vector[1, 17] = vector[0, 17];
 
                     break;
 
@@ -284,53 +268,56 @@ namespace TP5Sim
 
         //Estado LIBRE = 0
         //Estado OCUPADO = 1
-        public int tiempoInactividadAR(double[,] vector)
+        public double tiempoInactividadAR(double[,] vector)
         {
-            int TI = 0;
+            double TI = 0;
 
             //Tiempo de inactividad del Area de Ruedas
             int estadoEAct = Convert.ToInt32(vector[1, 21]);
 
             if (estadoEAct == 0)
             {
-                //Seria el TI de la fila anterior mas el reloj anterior mas el inicial
-                TI = Convert.ToInt32(vector[0,23]) + Convert.ToInt32(vector[0, 2]) - Convert.ToInt32(vector[1, 2]);
+                //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
+                TI = vector[0,23] + vector[1, 2] - vector[0, 2];
             }
             else
             {
                 //Seria el TI de la fila anterior, ya que esta ocupado.
-                TI = Convert.ToInt32(vector[0, 23]);
+                TI = vector[0, 23];
             }
     
             return TI;
         }
 
-        public int tiempoInactividadE(double[,] vector) 
+        public double tiempoInactividadE(double[,] vector) 
         {
-            int TI = 0;
+            double TI = 0;
 
             //Tiempo de inactividad del Area de ensamblaje
             int estadoE = Convert.ToInt32(vector[1, 13]);
 
             if (estadoE == 0)
             {
-                //Seria el TI de la fila anterior mas el reloj anterior mas el inicial
-                TI = Convert.ToInt32(vector[0, 22]) + Convert.ToInt32(vector[0, 2]) - Convert.ToInt32(vector[1, 2]);
+                //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
+                TI = vector[0, 22] + vector[1, 2] - vector[0, 2];
             }
             else
             {
                 //Seria el TI de la fila anterior, ya que esta ocupada
-                TI = Convert.ToInt32(vector[0, 22]);
+                TI = vector[0, 22];
             }
 
             return TI;
         }
 
-        public int tiempoInactividadTotal(double[,] vector, int ruedas, int ensamblaje)
+        public double tiempoInactividadTotal(double[,] vector)
         {
             //Aca lo que hago es la sumatoria del TI de rueda y el TI de ensamblaje
 
-            int tit = ruedas + ensamblaje + Convert.ToInt32(vector[0,24]);
+            double tiRuedas = vector[1,23];
+            double tiEnsamblaje = vector[1,22];
+
+            double tit = tiRuedas + tiEnsamblaje + vector[0,24];
 
             return tit;
         }
