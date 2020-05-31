@@ -114,6 +114,15 @@ namespace TP5Sim
                     double tiempoAreaTotal = tiempoInactividadTotal(vector);
                     vector[1, 24] = tiempoAreaTotal;
 
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
+
                     break;
 
                 //Proxima Llegada Motor
@@ -137,7 +146,7 @@ namespace TP5Sim
                     }
 
                     //Calculo la proxima llegada de motores
-                    double random = Convert.ToDouble(rnd);
+                    double random = rnd.NextDouble();
                     int limiteInf = 30;
                     int limiteSup = 40;
                     double tiempoLlegada = generador.Uniforme(limiteInf, limiteSup, random);
@@ -160,6 +169,15 @@ namespace TP5Sim
                     //Asigno el valor de inactividad total
                     double tiempoAreaTota = tiempoInactividadTotal(vector);
                     vector[1, 24] = tiempoAreaTota;
+
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
 
 
                     break;
@@ -210,6 +228,15 @@ namespace TP5Sim
                     //Asigno el valor de inactividad total
                     double tiempoAreaTot = tiempoInactividadTotal(vector);
                     vector[1, 24] = tiempoAreaTot;
+
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
 
                     break;
 
@@ -263,6 +290,16 @@ namespace TP5Sim
                         //Asigno el valor de inactividad total
                         double tiempoAreaTo = tiempoInactividadTotal(vector);
                         vector[1, 24] = tiempoAreaTo;
+
+                        //Asigno el valor de la Cola Maxima Motores
+                        vector[1, 26] = colaMaximaMotores(vector);
+
+                        //Asigno el valor de la Cola Maxima AM
+                        vector[1, 28] = colaMaximaAM(vector);
+
+                        //Asigno el valor de la Cola Maxima Ruedas
+                        vector[1, 27] = colaMaximaRuedas(vector);
+
                         break;
 
                 //Fin Area Ruedas
@@ -285,6 +322,7 @@ namespace TP5Sim
                         //Resto la cantidad de ruedas utilizadas
                         vector[1, 18] = vector[0,18] - 3;
                     }
+
                     //Asigno el valor de inactividad del area Ensamblaje
                     double tiempoEnsamb = tiempoInactividadE(vector);
                     vector[1, 22] = tiempoEnsamb;
@@ -296,6 +334,15 @@ namespace TP5Sim
                     //Asigno el valor de inactividad total
                     double tiempoAreaT = tiempoInactividadTotal(vector);
                     vector[1, 24] = tiempoAreaT;
+
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
 
                     break;
 
@@ -410,14 +457,14 @@ namespace TP5Sim
         }
 
         //------------------------ COLAS MAXIMAS -----------------------------------
-        public void colaMaximaMotores(DataGridView grilla)
+        public int colaMaximaMotores(double[,] vector)
         {
             //26=Cola Maxima Motores 
             //9 = Stock M
 
-            int stockMotores_0 = Convert.ToInt32(grilla.Rows[0].Cells[9].Value);
-            int stockMotores_1 = Convert.ToInt32(grilla.Rows[1].Cells[9].Value);
-            int CM = Convert.ToInt32(grilla.Rows[0].Cells[26].Value); 
+            int stockMotores_0 = Convert.ToInt32(vector[0,9]);
+            int stockMotores_1 = Convert.ToInt32(vector[1,9]);
+            int CM = Convert.ToInt32(vector[0,26]);
 
             if (stockMotores_1 > CM)
             {
@@ -428,17 +475,17 @@ namespace TP5Sim
                 CM = stockMotores_0;
             }
             
-            grilla.Rows[1].Cells[26].Value = CM;
+            return CM;
         }
 
-        public void colaMaximaAM(DataGridView grilla)
+        public int colaMaximaAM(double[,] vector)
         {
             //28= Cola maxima AM
             //12 = Stock AM
 
-            int stockAM_0 = Convert.ToInt32(grilla.Rows[0].Cells[12].Value);
-            int stockAM_1 = Convert.ToInt32(grilla.Rows[1].Cells[12].Value);
-            int CM = Convert.ToInt32(grilla.Rows[0].Cells[28].Value);
+            int stockAM_0 = Convert.ToInt32(vector[0, 12]);
+            int stockAM_1 = Convert.ToInt32(vector[1, 12]);
+            int CM = Convert.ToInt32(vector[0, 28]);
 
             if (stockAM_1 > CM)
             {
@@ -449,17 +496,17 @@ namespace TP5Sim
                 CM = stockAM_0;
             }
 
-            grilla.Rows[1].Cells[28].Value = CM;
+            return CM;
         }
 
-        public void colaMaximaRuedas(DataGridView grilla)
+        public int colaMaximaRuedas(double[,] vector)
         {
             //27 = Cola Maxima Ruedas
             //18 = Stock R 
 
-            int stockRuedas_0 = Convert.ToInt32(grilla.Rows[0].Cells[18].Value);
-            int stockRuedas_1 = Convert.ToInt32(grilla.Rows[1].Cells[18].Value);
-            int CM = Convert.ToInt32(grilla.Rows[0].Cells[27].Value);
+            int stockRuedas_0 = Convert.ToInt32(vector[0,18]);
+            int stockRuedas_1 = Convert.ToInt32(vector[1,18]);
+            int CM = Convert.ToInt32(vector[0,27]);
 
             if (stockRuedas_1 > CM)
             {
@@ -470,7 +517,7 @@ namespace TP5Sim
                 CM = stockRuedas_0;
             }
 
-            grilla.Rows[1].Cells[27].Value = CM;
+            return CM;
         }
 
         //----------------------------------------------------------------------------------------
