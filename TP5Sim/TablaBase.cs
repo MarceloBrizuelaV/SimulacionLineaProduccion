@@ -56,10 +56,19 @@ namespace TP5Sim
         {
             GeneradorVariables generador = new GeneradorVariables();
             Random rnd = new Random();
-                        
-            double[] vectorMenor = buscarMenor(vector);
+
+            // El problema es este, nos olvidamos que primero tenemos que pasar la fila 2 al lugar de la 1 y despues copiarla
+            //FILA ORIGEN -------FILA DESTINO
+            if (vector[1,0] != 0)
+            {
+                copiarFila(vector, 1, 0);
+            }
 
             copiarFila(vector, 0, 1);
+
+            double[] vectorMenor = buscarMenor(vector);
+
+            
 
             //Obtengo el evento
             vector[1, 1] = vectorMenor[0];
@@ -71,9 +80,10 @@ namespace TP5Sim
             
                 //Proxima Llegada armazon
                 case 4://Ver casos especiales
-                    //Verifica Si el area de ensamblaje esta libre (0 es libre)
+                    //Verifico si hay armazones en espera
                     if (vector[0,5] == 0)
                     {
+                        //Verifica Si el area de ensamblaje esta libre (0 es libre)
                         if (vector[0, 13] == 0)
                         {
                             //Verifica si hay motores (Si es diferente de 0 Hay)
@@ -101,6 +111,7 @@ namespace TP5Sim
                             vector[1, 5] = vector[0, 5] + 1;
                         }
                     }
+                    vector[1, 2] = vector[0, 2] + 10;
 
                     //Asigno el valor de inactividad del area Ensamblaje
                     double tiempoEnsamblaje = tiempoInactividadE(vector);
@@ -371,23 +382,34 @@ namespace TP5Sim
         //Esta funcion recorre el vector de estado y devuelve el tiempo menor para determinar el proximo evento por venir
         private double[] buscarMenor(double[,] vector)
         {
+            //Verificar que ignore los valores que no tienen tiempos o que son iguales al reloj actual, porque esos estan pasando en el momento
+
             //Configuramos el menor como la primera columna que chequear
             double menor = vector[0,4];
             int posicion = 4;
             //Vector con la posicion y el valor menor
-            double[] vectorMenor = { 4, menor };
+            double[] vectorMenor = { -1, menor };
+
+
+            if (vector[0, 0] == 0)
+            {
+                vectorMenor[0] = 0;
+                vectorMenor[1] = 0;
+                return vectorMenor;
+            }
+
             //El array contiene las posiciones de las columnas para chequear
-            int[] numeros = { 8, 11, 17, 20 };
+            int[] numeros = { 4, 8, 11, 17, 20 };
             //Columnas que chequear
             //4 Proxima llegada A
             //8 Proxima llegada M
             //11 Proximo ensamblaje
             //17 Proxima llegada
             //20 Proximo triciclo
-            for (int i = 8; i <= 20; i++)
+            for (int i = 4; i <= 20; i++)
             {
                 if (numeros.Contains(i)) {
-                    if (vector[0,i] < menor)
+                    if (vector[0,i] < menor && vector[0,i] != 0)
                     {
                         menor = vector[0,i];
                         posicion = i;
@@ -524,6 +546,7 @@ namespace TP5Sim
 
         private void copiarFila(double [,] vs, int filaOrigen, int filaDestino)
         {
+
             for (int i = 0; i < vs.GetLength(1); i++)
             {
                 vs[filaDestino, i] = vs[filaOrigen, i];
