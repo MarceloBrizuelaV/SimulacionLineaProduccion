@@ -57,7 +57,18 @@ namespace TP5Sim
             GeneradorVariables generador = new GeneradorVariables();
             Random rnd = new Random();
 
+            // El problema es este, nos olvidamos que primero tenemos que pasar la fila 2 al lugar de la 1 y despues copiarla
+            //FILA ORIGEN -------FILA DESTINO
+            if (vector[1,0] != 0)
+            {
+                copiarFila(vector, 1, 0);
+            }
+
+            copiarFila(vector, 0, 1);
+
             double[] vectorMenor = buscarMenor(vector);
+
+            
 
             //Obtengo el evento
             vector[1, 1] = vectorMenor[0];
@@ -68,27 +79,47 @@ namespace TP5Sim
             {
             
                 //Proxima Llegada armazon
-                case 4:
-                    //Verifica Si el area de ensamblaje esta libre (0 es libre)
-                    if (vector[0, 13] == 0)
+                case 4://Ver casos especiales
+                    //Verifico si hay armazones en espera
+                    if (vector[0,5] == 0)
                     {
-                        //Verifica si hay motores (Si es diferente de 0 Hay)
-                        if (vector[0, 9] != 0)
+                        //Verifica Si el area de ensamblaje esta libre (0 es libre)
+                        if (vector[0, 13] == 0)
                         {
-                            vector[1, 9] = vector[0, 9] - 1;
-                            vector[1, 13] = 1;
-                            vector[1, 11] = vector[1, 2] + vector[1, 10];
+                            //Verifica si hay motores (Si es diferente de 0 Hay)
+                            if (vector[0, 9] != 0)
+                            {
+                                //Resto un motor
+                                vector[1, 9] = vector[0, 9] - 1;
+                                //Cambio el estado del area del ensamblaje
+                                vector[1, 13] = Convert.ToDouble(1);
+                                //Tiempo de ensamblaje
+                                vector[1, 10] = Convert.ToDouble(10);
+                                //Calculo tiempo proximo ensamblaje
+                                vector[1, 11] = vector[1, 2] + vector[1, 10];
+                            }
+                            else
+                            {
+                                //Agrego Stock de armazon
+                                vector[1, 5] = vector[0, 5] + 1;
+                            }
                         }
+                        //No esta libre el area de ensamblaje
                         else
                         {
+                            //Agrego Stock de Armazon
                             vector[1, 5] = vector[0, 5] + 1;
                         }
                     }
+
                     //No esta libre el area de ensamblaje
                     else
                     {
                         vector[1, 5] = vector[0, 5] + 1;
                     }
+
+                    vector[1, 2] = vector[0, 2] + 10;
+
 
                     //Asigno el valor de inactividad del area Ensamblaje
                     double tiempoEnsamblaje = tiempoInactividadE(vector);
@@ -102,12 +133,20 @@ namespace TP5Sim
                     double tiempoAreaTotal = tiempoInactividadTotal(vector);
                     vector[1, 24] = tiempoAreaTotal;
 
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
+
+
                     break;
 
                 //Proxima Llegada Motor
                 case 8:
-
-
                     //Agrego 5 motores al stock
                     vector[1, 9] = vector[1, 9] + 5;
 
@@ -127,7 +166,7 @@ namespace TP5Sim
                     }
 
                     //Calculo la proxima llegada de motores
-                    double random = Convert.ToDouble(rnd);
+                    double random = rnd.NextDouble();
                     int limiteInf = 30;
                     int limiteSup = 40;
                     double tiempoLlegada = generador.Uniforme(limiteInf, limiteSup, random);
@@ -139,43 +178,87 @@ namespace TP5Sim
                     //Asigno Proxima Llegada
                     vector[1, 8] = tiempoLlegada + vector[1, 2];
 
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsamblaj = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamblaj;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRueda = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRueda;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaTota = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaTota;
+
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
+
 
                     break;
                     
 
 
                 //Proximo ensamblaje
-                        case 11:
-                            //Colocacion de Ruedas
-                            //Esta el area de ruedas libre?
-                            if (vector[0,21] == 0){
-                                //Calcular Proximo Triciclo -- Tiempo de Reloj + 5 Minutos
-                                vector[1, 20] = vector[1, 2] + 5;
-                                //Actualizar Stock de Ruedas -3
-                                vector[1, 18] = vector[0, 18] - 3;
-                                //Actualizar Fin_Area_Ruedas a Ocupado
-                                vector[1, 21] = 1;
-                            }
-                            else
-                            {
-                                //En caso de que el area de ruedas este ocupada sumamos un Armazon + Motor al Stock esperando la desocupacion
-                                //Stock AM + 1
-                                vector[1, 12] = vector[0, 12] + 1;
-                            }
-                            //Comienzo de Nuevo ensamblaje, verificamos que haya un Motor y un Armazon
-                            if (vector[0, 5] > 0 && vector[0, 9] > 0)
-                            {
-                                //Calculamos la finalizacion del proximo ensamblaje
-                                vector[1, 11] = vector[1, 2] + 10;
-                                //Cambiamos el estado del area de ensamblaje a Ocupado
-                                vector[1, 13] = 1;
-                            }
-                            else
-                            {
-                                //Cambiamos el estado del area de ensamblaje a libre
-                                vector[1, 13] = 0;
-                            }
-                            break;
+                case 11:
+                    //Colocacion de Ruedas
+                    //Esta el area de ruedas libre?
+                    if (vector[0,21] == 0)
+                    {
+                        //Calcular Proximo Triciclo -- Tiempo de Reloj + 5 Minutos
+                        vector[1, 20] = vector[1, 2] + 5;
+                        //Actualizar Stock de Ruedas -3
+                        vector[1, 18] = vector[0, 18] - 3;
+                        //Actualizar Fin_Area_Ruedas a Ocupado
+                        vector[1, 21] = 1;
+                    }
+                    else
+                    {
+                        //En caso de que el area de ruedas este ocupada sumamos un Armazon + Motor al Stock esperando la desocupacion
+                        //Stock AM + 1
+                        vector[1, 12] = vector[0, 12] + 1;
+                    }
+                    //Comienzo de Nuevo ensamblaje, verificamos que haya un Motor y un Armazon
+                    if (vector[0, 5] > 0 && vector[0, 9] > 0)
+                    {
+                        //Calculamos la finalizacion del proximo ensamblaje
+                        vector[1, 11] = vector[1, 2] + 10;
+                        //Cambiamos el estado del area de ensamblaje a Ocupado
+                        vector[1, 13] = 1;
+                    }
+                    else
+                    {
+                        //Cambiamos el estado del area de ensamblaje a libre
+                        vector[1, 13] = 0;
+                    }
+
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsambla = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsambla;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRued = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRued;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaTot = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaTot;
+
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
+
+                    break;
 
                 //Proxima llegada de ruedas
                     case 17:
@@ -215,6 +298,28 @@ namespace TP5Sim
                                 vector[1, 20] = vector[1, 2] + vector[1, 19];
                             }
                         }
+
+                        //Asigno el valor de inactividad del area Ensamblaje
+                        double tiempoEnsambl = tiempoInactividadE(vector);
+                        vector[1, 22] = tiempoEnsambl;
+
+                        //Asigno el valor de inactividad del area Ruedas
+                        double tiempoAreaRue = tiempoInactividadAR(vector);
+                        vector[1, 23] = tiempoAreaRue;
+
+                        //Asigno el valor de inactividad total
+                        double tiempoAreaTo = tiempoInactividadTotal(vector);
+                        vector[1, 24] = tiempoAreaTo;
+
+                        //Asigno el valor de la Cola Maxima Motores
+                        vector[1, 26] = colaMaximaMotores(vector);
+
+                        //Asigno el valor de la Cola Maxima AM
+                        vector[1, 28] = colaMaximaAM(vector);
+
+                        //Asigno el valor de la Cola Maxima Ruedas
+                        vector[1, 27] = colaMaximaRuedas(vector);
+
                         break;
 
                 //Fin Area Ruedas
@@ -238,10 +343,46 @@ namespace TP5Sim
                         vector[1, 18] = vector[0,18] - 3;
                     }
 
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsamb = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamb;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRu = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRu;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaT = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaT;
+
+                    //Asigno el valor de la Cola Maxima Motores
+                    vector[1, 26] = colaMaximaMotores(vector);
+
+                    //Asigno el valor de la Cola Maxima AM
+                    vector[1, 28] = colaMaximaAM(vector);
+
+                    //Asigno el valor de la Cola Maxima Ruedas
+                    vector[1, 27] = colaMaximaRuedas(vector);
 
                     break;
 
                 default:
+                    //Genero la fila 0, de la inicialización
+                    for (int i = 0; i < vector.GetLength(1); i++)
+                    {
+                        vector[0, i] = 0;
+                    }
+                    vector[0, 0] = 1;
+                    vector[0, 3] = 10;
+                    vector[0, 4] = vector[0, 3] + vector[0, 2];
+                    vector[0, 6] = rnd.NextDouble();
+                    vector[0, 7] = generador.Uniforme(30, 40, vector[0,6]);
+                    vector[0, 8] = vector[0, 2] + vector[0, 7];
+                    vector[0, 14] = rnd.NextDouble();
+                    vector[0, 15] = rnd.NextDouble();
+                    nuevosRandom = !nuevosRandom;
+                    vector[0, 16] = generador.Normal(vector[0, 14], vector[0, 15], 70, 8);
+                    vector[0, 17] = vector[0, 2] + vector[0, 16];
 
                     break;
             }
@@ -250,23 +391,34 @@ namespace TP5Sim
         //Esta funcion recorre el vector de estado y devuelve el tiempo menor para determinar el proximo evento por venir
         private double[] buscarMenor(double[,] vector)
         {
+            //Verificar que ignore los valores que no tienen tiempos o que son iguales al reloj actual, porque esos estan pasando en el momento
+
             //Configuramos el menor como la primera columna que chequear
             double menor = vector[0,4];
             int posicion = 4;
             //Vector con la posicion y el valor menor
-            double[] vectorMenor = { 4, menor };
+            double[] vectorMenor = { -1, menor };
+
+
+            if (vector[0, 0] == 0)
+            {
+                vectorMenor[0] = 0;
+                vectorMenor[1] = 0;
+                return vectorMenor;
+            }
+
             //El array contiene las posiciones de las columnas para chequear
-            int[] numeros = { 8, 11, 17, 20 };
+            int[] numeros = { 4, 8, 11, 17, 20 };
             //Columnas que chequear
             //4 Proxima llegada A
             //8 Proxima llegada M
             //11 Proximo ensamblaje
             //17 Proxima llegada
             //20 Proximo triciclo
-            for (int i = 8; i <= 20; i++)
+            for (int i = 4; i <= 20; i++)
             {
                 if (numeros.Contains(i)) {
-                    if (vector[0,i] < menor)
+                    if (vector[0,i] < menor && vector[0,i] != 0)
                     {
                         menor = vector[0,i];
                         posicion = i;
@@ -336,17 +488,20 @@ namespace TP5Sim
         }
 
         //------------------------ COLAS MAXIMAS -----------------------------------
-        public int colaMaximaMotores(DataGridView grilla)
+        public int colaMaximaMotores(double[,] vector)
         {
-            int stockMotores_0 = Convert.ToInt32(grilla.Rows[0].Cells[9].Value);
-            int stockMotores_1 = Convert.ToInt32(grilla.Rows[1].Cells[9].Value);
-            int CM; 
+            //26=Cola Maxima Motores 
+            //9 = Stock M
 
-            if (stockMotores_1 > stockMotores_0)
+            int stockMotores_0 = Convert.ToInt32(vector[0,9]);
+            int stockMotores_1 = Convert.ToInt32(vector[1,9]);
+            int CM = Convert.ToInt32(vector[0,26]);
+
+            if (stockMotores_1 > CM)
             {
                 CM = stockMotores_1;
             }
-            else
+            if (stockMotores_0 > CM)
             {
                 CM = stockMotores_0;
             }
@@ -354,18 +509,20 @@ namespace TP5Sim
             return CM;
         }
 
-        public int colaMaximaAM(DataGridView grilla)
+        public int colaMaximaAM(double[,] vector)
         {
-       
-            int stockAM_0 = Convert.ToInt32(grilla.Rows[0].Cells[12].Value);
-            int stockAM_1 = Convert.ToInt32(grilla.Rows[1].Cells[12].Value);
-            int CM;
+            //28= Cola maxima AM
+            //12 = Stock AM
 
-            if (stockAM_1 > stockAM_0)
+            int stockAM_0 = Convert.ToInt32(vector[0, 12]);
+            int stockAM_1 = Convert.ToInt32(vector[1, 12]);
+            int CM = Convert.ToInt32(vector[0, 28]);
+
+            if (stockAM_1 > CM)
             {
                 CM = stockAM_1;
             }
-            else
+            if (stockAM_0 > CM)
             {
                 CM = stockAM_0;
             }
@@ -373,18 +530,20 @@ namespace TP5Sim
             return CM;
         }
 
-        public int colaMaximaRuedas(DataGridView grilla)
+        public int colaMaximaRuedas(double[,] vector)
         {
-       
-            int stockRuedas_0 = Convert.ToInt32(grilla.Rows[0].Cells[18].Value);
-            int stockRuedas_1 = Convert.ToInt32(grilla.Rows[1].Cells[18].Value);
-            int CM;
+            //27 = Cola Maxima Ruedas
+            //18 = Stock R 
 
-            if (stockRuedas_1 > stockRuedas_0)
+            int stockRuedas_0 = Convert.ToInt32(vector[0,18]);
+            int stockRuedas_1 = Convert.ToInt32(vector[1,18]);
+            int CM = Convert.ToInt32(vector[0,27]);
+
+            if (stockRuedas_1 > CM)
             {
                 CM = stockRuedas_1;
             }
-            else
+            if (stockRuedas_0 > CM)
             {
                 CM = stockRuedas_0;
             }
@@ -394,6 +553,14 @@ namespace TP5Sim
 
         //----------------------------------------------------------------------------------------
 
+        private void copiarFila(double [,] vs, int filaOrigen, int filaDestino)
+        {
+
+            for (int i = 0; i < vs.GetLength(1); i++)
+            {
+                vs[filaDestino, i] = vs[filaOrigen, i];
+            }
+        }
 
     }
 }

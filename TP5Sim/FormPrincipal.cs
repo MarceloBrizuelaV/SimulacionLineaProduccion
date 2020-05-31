@@ -53,7 +53,33 @@ namespace TP5Sim
         //Boton
         private void btnSimular_Click(object sender, EventArgs e)
         {
-            //txtCantidadSim.Text = d
+            TablaBase genTabla = new TablaBase();
+
+            double[,] vs = genTabla.generarVector();
+            for (int i = 0; i < Convert.ToInt32(txtCantidadSim.Text); i++)
+            {
+                genTabla.generarTabla(vs);
+                //Herramientas.matrizAGrid(vs, dataGridView1, 4);
+                
+                for (int z = 0; z < vs.GetLength(0); z++)
+                {
+                    for (int j = 0; j < vs.GetLength(1); j++)
+                    {
+                        Console.Write(vs[z, j] + "\t");
+                    }
+                    Console.WriteLine();
+
+                }
+
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+
+
+            }
+
+            
+
         }
     }
 }
