@@ -97,6 +97,8 @@ namespace TP5Sim
                                 vector[1, 10] = Convert.ToDouble(10);
                                 //Calculo tiempo proximo ensamblaje
                                 vector[1, 11] = vector[1, 2] + vector[1, 10];
+                                //Calculo el tiempo del proximo Armazon
+                                vector[1, 4] = vector[1, 2] + 10.0001;
                             }
                             else
                             {
@@ -117,9 +119,11 @@ namespace TP5Sim
                     {
                         vector[1, 3] = 0;
                     }
-                    
 
-                    vector[1, 2] = vector[0, 2] + 10;
+
+                        
+                    
+                    
 
 
                     //Asigno el valor de inactividad del area Ensamblaje
@@ -159,6 +163,14 @@ namespace TP5Sim
                     {
                         //Asigno el estado ocupado
                         vector[1, 13] = 1;
+                        //Asigno tiempo llegada E
+                        vector[1, 10] = 10;
+                        //Calculo la Proxima llegada E
+                        vector[1, 11] = vector[1, 2] + vector[1, 10];
+
+                        //Calculo el proximo armazon
+                        vector[1, 3] = 10.0001;
+                        vector[1, 4] = vector[1,2] + 10.0001;
 
                         //Resto los stock de Armazon y Motor
                         vector[1, 5] = vector[1, 5] - 1;
@@ -374,7 +386,7 @@ namespace TP5Sim
                         vector[0, i] = 0;
                     }
                     vector[0, 0] = 1;
-                    vector[0, 3] = 10;
+                    vector[0, 3] = 10.0001;
                     vector[0, 4] = vector[0, 3] + vector[0, 2];
                     vector[0, 6] = rnd.NextDouble();
                     vector[0, 7] = generador.Uniforme(30, 40, vector[0,6]);
