@@ -102,6 +102,7 @@ namespace TP5Sim
                             {
                                 //Agrego Stock de armazon
                                 vector[1, 5] = vector[0, 5] + 1;
+                                vector[1, 3] = 0;
                             }
                         }
                         //No esta libre el area de ensamblaje
@@ -109,14 +110,14 @@ namespace TP5Sim
                         {
                             //Agrego Stock de Armazon
                             vector[1, 5] = vector[0, 5] + 1;
+                            vector[1, 3] = 0;
                         }
                     }
-
-                    //No esta libre el area de ensamblaje
                     else
                     {
-                        vector[1, 5] = vector[0, 5] + 1;
+                        vector[1, 3] = 0;
                     }
+                    
 
                     vector[1, 2] = vector[0, 2] + 10;
 
@@ -148,7 +149,7 @@ namespace TP5Sim
                 //Proxima Llegada Motor
                 case 8:
                     //Agrego 5 motores al stock
-                    vector[1, 9] = vector[1, 9] + 5;
+                    vector[1, 9] = vector[0, 9] + 5;
 
                     //Verifico si el area ensamblaje esta libre y si disponemos de armazones
                     int estado = Convert.ToInt32(vector[0, 13]);
@@ -160,8 +161,8 @@ namespace TP5Sim
                         vector[1, 13] = 1;
 
                         //Resto los stock de Armazon y Motor
-                        vector[1, 5] = vector[0, 5] - 1;
-                        vector[1, 9] = vector[0, 9] - 1;
+                        vector[1, 5] = vector[1, 5] - 1;
+                        vector[1, 9] = vector[1, 9] - 1;
 
                     }
 
@@ -394,7 +395,7 @@ namespace TP5Sim
             //Verificar que ignore los valores que no tienen tiempos o que son iguales al reloj actual, porque esos estan pasando en el momento
 
             //Configuramos el menor como la primera columna que chequear
-            double menor = vector[0,4];
+            double menor = 10000000000;
             int posicion = 4;
             //Vector con la posicion y el valor menor
             double[] vectorMenor = { -1, menor };
@@ -418,7 +419,7 @@ namespace TP5Sim
             for (int i = 4; i <= 20; i++)
             {
                 if (numeros.Contains(i)) {
-                    if (vector[0,i] < menor && vector[0,i] != 0)
+                    if (vector[0,i] < menor && vector[0,i] != 0 && vector[0,i] > vector[0,2])
                     {
                         menor = vector[0,i];
                         posicion = i;
