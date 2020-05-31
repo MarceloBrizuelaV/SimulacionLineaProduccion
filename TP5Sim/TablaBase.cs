@@ -221,7 +221,8 @@ namespace TP5Sim
                 case 11:
                     //Colocacion de Ruedas
                     //Esta el area de ruedas libre?
-                    if (vector[0,21] == 0)
+
+                    if (vector[0,21] == 0 && vector[0, 18] >= 3)
                     {
                         //Calcular Proximo Triciclo -- Tiempo de Reloj + 5 Minutos
                         vector[1, 20] = vector[1, 2] + 5;
@@ -232,13 +233,15 @@ namespace TP5Sim
                     }
                     else
                     {
-                        //En caso de que el area de ruedas este ocupada sumamos un Armazon + Motor al Stock esperando la desocupacion
+                        //En caso de que el area de ruedas este ocupada sumamos un AM al Stock esperando la desocupacion
                         //Stock AM + 1
                         vector[1, 12] = vector[0, 12] + 1;
                     }
                     //Comienzo de Nuevo ensamblaje, verificamos que haya un Motor y un Armazon
                     if (vector[0, 5] > 0 && vector[0, 9] > 0)
                     {
+                        //Calculamos el tiempo ensamblaje
+
                         //Calculamos la finalizacion del proximo ensamblaje
                         vector[1, 11] = vector[1, 2] + 10;
                         //Cambiamos el estado del area de ensamblaje a Ocupado
@@ -456,12 +459,13 @@ namespace TP5Sim
             if (estadoEAct == 0)
             {
                 //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0,23] + vector[1, 2] - vector[0, 2];
+                TI = vector[0, 23];
+                
             }
             else
             {
                 //Seria el TI de la fila anterior, ya que esta ocupado.
-                TI = vector[0, 23];
+                TI = vector[0, 23] + vector[1, 2] - vector[0, 2];
             }
     
             return TI;
@@ -477,12 +481,13 @@ namespace TP5Sim
             if (estadoE == 0)
             {
                 //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0, 22] + vector[1, 2] - vector[0, 2];
+                TI = vector[0, 22];
+                
             }
             else
             {
                 //Seria el TI de la fila anterior, ya que esta ocupada
-                TI = vector[0, 22];
+                TI = vector[0, 22] + vector[1, 2] - vector[0, 2];
             }
 
             return TI;

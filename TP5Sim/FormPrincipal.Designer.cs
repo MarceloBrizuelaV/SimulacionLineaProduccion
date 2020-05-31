@@ -54,7 +54,6 @@
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -154,7 +153,6 @@
             this.Column16,
             this.Column17,
             this.Column18,
-            this.Column19,
             this.Column20,
             this.Column21,
             this.Column22,
@@ -317,14 +315,6 @@
             this.Column18.ReadOnly = true;
             this.Column18.Width = 125;
             // 
-            // Column19
-            // 
-            this.Column19.HeaderText = "Proxima Llegada R";
-            this.Column19.MinimumWidth = 6;
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
-            this.Column19.Width = 125;
-            // 
             // Column20
             // 
             this.Column20.HeaderText = "Stock R";
@@ -463,7 +453,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
