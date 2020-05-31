@@ -323,60 +323,67 @@ namespace TP5Sim
         }
 
         //------------------------ COLAS MAXIMAS -----------------------------------
-        public int colaMaximaMotores(DataGridView grilla)
+        public void colaMaximaMotores(DataGridView grilla)
         {
+            //26=Cola Maxima Motores 
+            //9 = Stock M
+
             int stockMotores_0 = Convert.ToInt32(grilla.Rows[0].Cells[9].Value);
             int stockMotores_1 = Convert.ToInt32(grilla.Rows[1].Cells[9].Value);
-            int CM; 
+            int CM = Convert.ToInt32(grilla.Rows[0].Cells[26].Value); 
 
-            if (stockMotores_1 > stockMotores_0)
+            if (stockMotores_1 > CM)
             {
                 CM = stockMotores_1;
             }
-            else
+            if (stockMotores_0 > CM)
             {
                 CM = stockMotores_0;
             }
             
-            return CM;
+            grilla.Rows[1].Cells[26].Value = CM;
         }
 
-        public int colaMaximaAM(DataGridView grilla)
+        public void colaMaximaAM(DataGridView grilla)
         {
-       
+            //28= Cola maxima AM
+            //12 = Stock AM
+
             int stockAM_0 = Convert.ToInt32(grilla.Rows[0].Cells[12].Value);
             int stockAM_1 = Convert.ToInt32(grilla.Rows[1].Cells[12].Value);
-            int CM;
+            int CM = Convert.ToInt32(grilla.Rows[0].Cells[28].Value);
 
-            if (stockAM_1 > stockAM_0)
+            if (stockAM_1 > CM)
             {
                 CM = stockAM_1;
             }
-            else
+            if (stockAM_0 > CM)
             {
                 CM = stockAM_0;
             }
 
-            return CM;
+            grilla.Rows[1].Cells[28].Value = CM;
         }
 
-        public int colaMaximaRuedas(DataGridView grilla)
+        public void colaMaximaRuedas(DataGridView grilla)
         {
-       
+            //27 = Cola Maxima Ruedas
+            //18 = Stock R 
+
             int stockRuedas_0 = Convert.ToInt32(grilla.Rows[0].Cells[18].Value);
             int stockRuedas_1 = Convert.ToInt32(grilla.Rows[1].Cells[18].Value);
-            int CM;
+            int CM = Convert.ToInt32(grilla.Rows[0].Cells[27].Value);
 
-            if (stockRuedas_1 > stockRuedas_0)
+            if (stockRuedas_1 > CM)
             {
                 CM = stockRuedas_1;
             }
-            else
+            if (stockRuedas_0 > CM)
             {
                 CM = stockRuedas_0;
             }
 
-            return CM;
+            grilla.Rows[1].Cells[27].Value = CM;
         }
 
         //----------------------------------------------------------------------------------------
