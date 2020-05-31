@@ -18,3 +18,12 @@ C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csproj.Generate
 C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csproj.CoreCompileInputs.cache
 C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.exe
 C:\Users\Amadeus\Documents\GitHub\tp5SIM\TP5Sim\obj\Debug\TP5Sim.pdb
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\bin\Debug\TP5Sim.exe.config
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\bin\Debug\TP5Sim.exe
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\bin\Debug\TP5Sim.pdb
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csprojAssemblyReference.cache
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\obj\Debug\TP5Sim.FormPrincipal.resources
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\obj\Debug\TP5Sim.Properties.Resources.resources
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\obj\Debug\TP5Sim.csproj.GenerateResource.cache
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\obj\Debug\TP5Sim.exe
+D:\MARCELO\INGENIERIA EN SISTEMAS\4° AÑO\SIMULACION\Trabajos Practicos\TP 5\tp5SIM\TP5Sim\obj\Debug\TP5Sim.pdb

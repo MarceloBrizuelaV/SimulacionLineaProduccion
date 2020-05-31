@@ -56,8 +56,10 @@ namespace TP5Sim
         {
             GeneradorVariables generador = new GeneradorVariables();
             Random rnd = new Random();
-
+                        
             double[] vectorMenor = buscarMenor(vector);
+
+            copiarFila(vector, 0, 1);
 
             //Obtengo el evento
             vector[1, 1] = vectorMenor[0];
@@ -68,33 +70,42 @@ namespace TP5Sim
             {
             
                 //Proxima Llegada armazon
-                case 4:
+                case 4://Ver casos especiales
                     //Verifica Si el area de ensamblaje esta libre (0 es libre)
-                    if (vector[0, 13] == 0)
+                    if (vector[0,5] == 0)
                     {
-                        //Verifica si hay motores (Si es diferente de 0 Hay)
-                        if (vector[0, 9] != 0)
+                        if (vector[0, 13] == 0)
                         {
-                            vector[1, 9] = vector[0, 9] - 1;
-                            vector[1, 13] = 1;
-                            vector[1, 11] = vector[1, 2] + vector[1, 10];
+                            //Verifica si hay motores (Si es diferente de 0 Hay)
+                            if (vector[0, 9] != 0)
+                            {
+                                //Resto un motor
+                                vector[1, 9] = vector[0, 9] - 1;
+                                //Cambio el estado del area del ensamblaje
+                                vector[1, 13] = Convert.ToDouble(1);
+                                //Tiempo de ensamblaje
+                                vector[1, 10] = Convert.ToDouble(10);
+                                //Calculo tiempo proximo ensamblaje
+                                vector[1, 11] = vector[1, 2] + vector[1, 10];
+                            }
+                            else
+                            {
+                                //Agrego Stock de armazon
+                                vector[1, 5] = vector[0, 5] + 1;
+                            }
                         }
+                        //No esta libre el area de ensamblaje
                         else
                         {
+                            //Agrego Stock de Armazon
                             vector[1, 5] = vector[0, 5] + 1;
                         }
                     }
-                    //No esta libre el area de ensamblaje
-                    else
-                    {
-                        vector[1, 5] = vector[0, 5] + 1;
-                    }
+                    
                     break;
 
                 //Proxima Llegada Motor
                 case 8:
-
-
                     //Agrego 5 motores al stock
                     vector[1, 9] = vector[1, 9] + 5;
 
@@ -139,37 +150,38 @@ namespace TP5Sim
                     break;
 
                 //Proximo ensamblaje
-                        case 11:
-                            //Colocacion de Ruedas
-                            //Esta el area de ruedas libre?
-                            if (vector[0,21] == 0){
-                                //Calcular Proximo Triciclo -- Tiempo de Reloj + 5 Minutos
-                                vector[1, 20] = vector[1, 2] + 5;
-                                //Actualizar Stock de Ruedas -3
-                                vector[1, 18] = vector[0, 18] - 3;
-                                //Actualizar Fin_Area_Ruedas a Ocupado
-                                vector[1, 21] = 1;
-                            }
-                            else
-                            {
-                                //En caso de que el area de ruedas este ocupada sumamos un Armazon + Motor al Stock esperando la desocupacion
-                                //Stock AM + 1
-                                vector[1, 12] = vector[0, 12] + 1;
-                            }
-                            //Comienzo de Nuevo ensamblaje, verificamos que haya un Motor y un Armazon
-                            if (vector[0, 5] > 0 && vector[0, 9] > 0)
-                            {
-                                //Calculamos la finalizacion del proximo ensamblaje
-                                vector[1, 11] = vector[1, 2] + 10;
-                                //Cambiamos el estado del area de ensamblaje a Ocupado
-                                vector[1, 13] = 1;
-                            }
-                            else
-                            {
-                                //Cambiamos el estado del area de ensamblaje a libre
-                                vector[1, 13] = 0;
-                            }
-                            break;
+                case 11:
+                    //Colocacion de Ruedas
+                    //Esta el area de ruedas libre?
+                    if (vector[0,21] == 0)
+                    {
+                        //Calcular Proximo Triciclo -- Tiempo de Reloj + 5 Minutos
+                        vector[1, 20] = vector[1, 2] + 5;
+                        //Actualizar Stock de Ruedas -3
+                        vector[1, 18] = vector[0, 18] - 3;
+                        //Actualizar Fin_Area_Ruedas a Ocupado
+                        vector[1, 21] = 1;
+                    }
+                    else
+                    {
+                        //En caso de que el area de ruedas este ocupada sumamos un Armazon + Motor al Stock esperando la desocupacion
+                        //Stock AM + 1
+                        vector[1, 12] = vector[0, 12] + 1;
+                    }
+                    //Comienzo de Nuevo ensamblaje, verificamos que haya un Motor y un Armazon
+                    if (vector[0, 5] > 0 && vector[0, 9] > 0)
+                    {
+                        //Calculamos la finalizacion del proximo ensamblaje
+                        vector[1, 11] = vector[1, 2] + 10;
+                        //Cambiamos el estado del area de ensamblaje a Ocupado
+                        vector[1, 13] = 1;
+                    }
+                    else
+                    {
+                        //Cambiamos el estado del area de ensamblaje a libre
+                        vector[1, 13] = 0;
+                    }
+                        break;
 
                 //Proxima llegada de ruedas
                     case 17:
@@ -245,6 +257,22 @@ namespace TP5Sim
                     break;
 
                 default:
+                    //Genero la fila 0, de la inicialización
+                    for (int i = 0; i < vector.GetLength(1); i++)
+                    {
+                        vector[0, i] = 0;
+                    }
+                    vector[0, 0] = 1;
+                    vector[0, 3] = 10;
+                    vector[0, 4] = vector[0, 3] + vector[0, 2];
+                    vector[0, 6] = rnd.NextDouble();
+                    vector[0, 7] = generador.Uniforme(30, 40, vector[0,6]);
+                    vector[0, 8] = vector[0, 2] + vector[0, 7];
+                    vector[0, 14] = rnd.NextDouble();
+                    vector[0, 15] = rnd.NextDouble();
+                    nuevosRandom = !nuevosRandom;
+                    vector[0, 16] = generador.Normal(vector[0, 14], vector[0, 15], 70, 8);
+                    vector[0, 17] = vector[0, 2] + vector[0, 16];
 
                     break;
             }
@@ -394,6 +422,13 @@ namespace TP5Sim
 
         //----------------------------------------------------------------------------------------
 
+        private void copiarFila(double [,] vs, int filaOrigen, int filaDestino)
+        {
+            for (int i = 0; i < vs.GetLength(1); i++)
+            {
+                vs[filaDestino, i] = vs[filaOrigen, i];
+            }
+        }
 
     }
 }

@@ -54,6 +54,18 @@ namespace TP5Sim
         private void btnSimular_Click(object sender, EventArgs e)
         {
             //txtCantidadSim.Text = d
+            double[,] col = new double[2, 29];
+
+            switch (col[0, 2])
+            {
+                case 1:
+
+                    break;
+
+                default:
+                    Console.WriteLine("Entro Default");
+                    break;
+            }
         }
     }
 }
