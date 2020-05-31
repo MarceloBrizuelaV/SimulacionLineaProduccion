@@ -59,8 +59,10 @@ namespace TP5Sim
             for (int i = 0; i < Convert.ToInt32(txtCantidadSim.Text); i++)
             {
                 genTabla.generarTabla(vs);
-                //Herramientas.matrizAGrid(vs, dataGridView1, 4);
+                Herramientas.matrizAGrid2(vs, dataGridView1, 6); 
                 
+
+                /*
                 for (int z = 0; z < vs.GetLength(0); z++)
                 {
                     for (int j = 0; j < vs.GetLength(1); j++)
@@ -74,7 +76,7 @@ namespace TP5Sim
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine();
-
+                */
 
             }
 

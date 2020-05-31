@@ -78,5 +78,26 @@ namespace TP5Sim
             }
         }
 
+        public static void matrizAGrid2(double[,] vs, DataGridView data, int ordenTruncado)
+        {
+            
+            if (data.Rows.Count == 0)
+            {
+                data.Rows.Add();
+                for (int i = 0; i < vs.GetLength(1); i++)
+                {
+                    data.Rows[data.Rows.Count - 1].Cells[i].Value = TruncadoMarcelo(vs[0, i], ordenTruncado).ToString();
+                }
+            }
+            else
+            {
+                data.Rows.Add();
+                for (int i = 0; i < vs.GetLength(1); i++)
+                {
+                    data.Rows[data.Rows.Count - 1].Cells[i].Value = TruncadoMarcelo(vs[1, i], ordenTruncado).ToString();
+                }
+            }
+        }
+
     }
 }
