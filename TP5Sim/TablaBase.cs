@@ -101,7 +101,19 @@ namespace TP5Sim
                             vector[1, 5] = vector[0, 5] + 1;
                         }
                     }
-                    
+
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsamblaje = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamblaje;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRuedas = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRuedas;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaTotal = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaTotal;
+
                     break;
 
                 //Proxima Llegada Motor
@@ -136,6 +148,18 @@ namespace TP5Sim
                     vector[1, 7] = tiempoLlegada;
                     //Asigno Proxima Llegada
                     vector[1, 8] = tiempoLlegada + vector[1, 2];
+
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsamblaj = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamblaj;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRueda = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRueda;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaTota = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaTota;
 
 
                     break;
@@ -174,7 +198,20 @@ namespace TP5Sim
                         //Cambiamos el estado del area de ensamblaje a libre
                         vector[1, 13] = 0;
                     }
-                        break;
+
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsambla = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsambla;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRued = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRued;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaTot = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaTot;
+
+                    break;
 
                 //Proxima llegada de ruedas
                     case 17:
@@ -214,6 +251,18 @@ namespace TP5Sim
                                 vector[1, 20] = vector[1, 2] + vector[1, 19];
                             }
                         }
+
+                        //Asigno el valor de inactividad del area Ensamblaje
+                        double tiempoEnsambl = tiempoInactividadE(vector);
+                        vector[1, 22] = tiempoEnsambl;
+
+                        //Asigno el valor de inactividad del area Ruedas
+                        double tiempoAreaRue = tiempoInactividadAR(vector);
+                        vector[1, 23] = tiempoAreaRue;
+
+                        //Asigno el valor de inactividad total
+                        double tiempoAreaTo = tiempoInactividadTotal(vector);
+                        vector[1, 24] = tiempoAreaTo;
                         break;
 
                 //Fin Area Ruedas
@@ -236,7 +285,17 @@ namespace TP5Sim
                         //Resto la cantidad de ruedas utilizadas
                         vector[1, 18] = vector[0,18] - 3;
                     }
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsamb = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamb;
 
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRu = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRu;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaT = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaT;
 
                     break;
 
