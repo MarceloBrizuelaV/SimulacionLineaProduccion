@@ -89,6 +89,19 @@ namespace TP5Sim
                     {
                         vector[1, 5] = vector[0, 5] + 1;
                     }
+
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    double tiempoEnsamblaje = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamblaje;
+
+                    //Asigno el valor de inactividad del area Ruedas
+                    double tiempoAreaRuedas = tiempoInactividadAR(vector);
+                    vector[1, 23] = tiempoAreaRuedas;
+
+                    //Asigno el valor de inactividad total
+                    double tiempoAreaTotal = tiempoInactividadTotal(vector);
+                    vector[1, 24] = tiempoAreaTotal;
+
                     break;
 
                 //Proxima Llegada Motor
