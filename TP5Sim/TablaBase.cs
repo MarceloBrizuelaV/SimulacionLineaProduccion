@@ -357,6 +357,9 @@ namespace TP5Sim
 
                         //Resto la cantidad de ruedas utilizadas
                         vector[1, 18] = vector[0,18] - 3;
+
+                        //Asigno estado ocupado al area de ruedas -- cambio xD
+                        vector[1, 21] = 1;
                     }
 
                     //Asigno el valor de inactividad del area Ensamblaje
@@ -451,24 +454,70 @@ namespace TP5Sim
         //Estado OCUPADO = 1
         public double tiempoInactividadAR(double[,] vector)
         {
-            double TI = 0;
+            /* Posiciones de las columnas
+            2=Reloj 
+            16=Tiempo llegada R 
+            17= Proxima llegada R 
+            18= Stock R 
+            19= Tiempo ensamblaje AR 
+            20= Proximo Triciclo AR  
+            21 = Estado AR            
+            23= TI area rueda */
 
-            //Tiempo de inactividad del Area de Ruedas
-            int estadoEAct = Convert.ToInt32(vector[1, 21]);
+            double TIR = Convert.ToDouble(vector[0, 23]);
 
-            if (estadoEAct == 0)
+            int estadoEAnt = Convert.ToInt32(vector[0, 21]);
+            //estado ensamblaje actual
+            int estadoE = Convert.ToInt32(vector[1, 21]);
+            //Reloj anterior
+            double reloj0 = Convert.ToDouble(vector[0, 2]);
+            //Reloj Actual
+            double reloj1 = Convert.ToDouble(vector[1, 2]);
+            //Tiempo improductividad anterior
+            double TIRA = Convert.ToDouble(vector[0, 23]);
+            // Ultimo fin de ensamblaje
+            double UltimoFinEnsamblaje = Convert.ToDouble(vector[0, 20]);
+
+            // Cuando me ocupo resto mi reloj actual con mi ultimo fin de ensamblaje
+            //para obtener el tiempo que estuve inactivo
+            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)
             {
-                //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0, 23];
-                
+                TIR = TIRA + (reloj1 - UltimoFinEnsamblaje);
+
+                //Si mi ultimo ensamblaje valia 0 no acumulo
+                if (UltimoFinEnsamblaje == 0)
+                {
+                    TIR = TIRA + (reloj1 - UltimoFinEnsamblaje) - reloj0;
+                }
+                //CHECK POINT
             }
-            else
+            //Si mi estado actual y anterior valen 0 acumulo los tiempo improductivos
+            if (estadoE == 0 && estadoEAnt == 0)
             {
-                //Seria el TI de la fila anterior, ya que esta ocupado.
-                TI = vector[0, 23] + vector[1, 2] - vector[0, 2];
+                TIR = TIRA + reloj1 - reloj0;
+
             }
-    
-            return TI;
+
+            return TIR;
+            /* double TI = 0;
+
+             //Tiempo de inactividad del Area de Ruedas
+             int estadoEAct = Convert.ToInt32(vector[1, 21]);
+
+             if (estadoEAct == 0)
+             {
+                 //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
+                 TI = vector[0, 23];
+
+             }
+             else
+             {
+                 //Seria el TI de la fila anterior, ya que esta ocupado.
+                 TI = vector[0, 23] + vector[1, 2] - vector[0, 2];
+             }
+
+             return TI;*/
+
         }
 
         public double tiempoInactividadE(double[,] vector) 
@@ -520,7 +569,7 @@ namespace TP5Sim
             double tiRuedas = vector[1,23];
             double tiEnsamblaje = vector[1,22];
 
-            double tit = tiRuedas + tiEnsamblaje + vector[0,24];
+            double tit = tiRuedas + tiEnsamblaje;
 
             return tit;
         }
