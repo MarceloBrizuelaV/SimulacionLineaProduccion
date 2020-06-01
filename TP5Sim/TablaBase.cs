@@ -362,7 +362,10 @@ namespace TP5Sim
                         vector[1, 21] = 1;
                     }
 
-                    //otro cambio xd 
+                    /*otro cambio xd 
+                     si mi estado actual es 0 (sin trabajar) no se cuando voy a largar el proximo triciclo
+                     por lo tanto dejo el valor en 0 para que no afecte a los tiempos de improductividad
+                     y se calcule correctamente el tiempo de inactividad del area de ruedas*/
                     if (vector[1, 21] == 0) 
                     {
                         vector[1, 20] = 0;
