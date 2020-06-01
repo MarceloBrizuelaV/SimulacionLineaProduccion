@@ -11,6 +11,12 @@ namespace TP5Sim
 {
     class TablaBase
     {
+        private static double cont = 0;
+        private static double contN = 0;
+        private static bool bandera = false;
+        private static bool banderaPrimera = true;
+        private static bool banderaSegunda = true;
+
         private static bool nuevosRandom = true;
         /*
         //Posiciones de las columnas
@@ -121,14 +127,16 @@ namespace TP5Sim
                     }
 
 
-                        
-                    
-                    
+
+
+
 
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    double tiempoEnsamblaje = tiempoInactividadE(vector);
-                    vector[1, 22] = tiempoEnsamblaje;
+                    //double tiempoEnsamblaje = tiempoInactividadE(vector);
+                    double tiempoEnsamblaje = tiE(vector);
+                    cont = cont + tiempoEnsamblaje;
+                    vector[1, 22] = cont;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRuedas = tiempoInactividadAR(vector);
@@ -192,8 +200,10 @@ namespace TP5Sim
                     vector[1, 8] = tiempoLlegada + vector[1, 2];
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    double tiempoEnsamblaj = tiempoInactividadE(vector);
-                    vector[1, 22] = tiempoEnsamblaj;
+                    //double tiempoEnsamblaj = tiempoInactividadE(vector);
+                    double tiempoEnsamblaj = tiE(vector);
+                    cont = cont + tiempoEnsamblaj;
+                    vector[1, 22] = cont;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRueda = tiempoInactividadAR(vector);
@@ -254,8 +264,10 @@ namespace TP5Sim
                     }
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    double tiempoEnsambla = tiempoInactividadE(vector);
-                    vector[1, 22] = tiempoEnsambla;
+                    //double tiempoEnsambla = tiempoInactividadE(vector);
+                    double tiempoEnsambla = tiE(vector);
+                    cont = cont + tiempoEnsambla;
+                    vector[1, 22] = cont;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRued = tiempoInactividadAR(vector);
@@ -315,9 +327,10 @@ namespace TP5Sim
                             }
                         }
 
-                        //Asigno el valor de inactividad del area Ensamblaje
-                        double tiempoEnsambl = tiempoInactividadE(vector);
-                        vector[1, 22] = tiempoEnsambl;
+                    //Asigno el valor de inactividad del area Ensamblaje
+                    //double tiempoEnsambl = tiempoInactividadE(vector);
+                    double tiempoEnsambl = tiE(vector);
+                    vector[1, 22] = tiempoEnsambl;
 
                         //Asigno el valor de inactividad del area Ruedas
                         double tiempoAreaRue = tiempoInactividadAR(vector);
@@ -360,8 +373,10 @@ namespace TP5Sim
                     }
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    double tiempoEnsamb = tiempoInactividadE(vector);
-                    vector[1, 22] = tiempoEnsamb;
+                    //double tiempoEnsamb = tiempoInactividadE(vector);
+                    double tiempoEnsamb = tiE(vector);
+                    cont = cont + tiempoEnsamb;
+                    vector[1, 22] = cont;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRu = tiempoInactividadAR(vector);
@@ -471,6 +486,29 @@ namespace TP5Sim
             return TI;
         }
 
+
+        public double tiE(double[,] vector)
+        {
+            //Agrego el primer valor
+            double TI = Convert.ToDouble(vector[0, 22]);
+
+            //Tiempo de inactividad del Area de ensamblaje
+            int estadoE = Convert.ToInt32(vector[1, 13]);
+            double reloj = Convert.ToDouble(vector[1, 2]);
+
+            if (estadoE == 1 && reloj >= vector[0, 11])
+            {
+                TI = vector[1, 2] - vector[0, 11];
+            }
+            if (estadoE == 0)
+            {
+                TI = vector[1, 2] - vector[0, 11];
+            }
+
+            return TI;
+
+
+        }
         public double tiempoInactividadE(double[,] vector) 
         {
             double TI = 0;
@@ -481,13 +519,14 @@ namespace TP5Sim
             if (estadoE == 0)
             {
                 //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0, 22];
+                TI = vector[0, 22] + vector[1, 2] - vector[0, 11];
+                
                 
             }
             else
             {
                 //Seria el TI de la fila anterior, ya que esta ocupada
-                TI = vector[0, 22] + vector[1, 2] - vector[0, 2];
+                TI = vector[0, 22];
             }
 
             return TI;
