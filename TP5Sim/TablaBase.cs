@@ -473,22 +473,42 @@ namespace TP5Sim
 
         public double tiempoInactividadE(double[,] vector) 
         {
-            double TI = 0;
+            double TI = Convert.ToDouble(vector[0,22]);
 
-            //Tiempo de inactividad del Area de ensamblaje
-            int estadoE = Convert.ToInt32(vector[1, 13]);
+            //estado ensamblaje anterior
+            int estadoEAnt = Convert.ToInt32(vector[0, 13]);
+            //estado ensamblaje actual
+            int estadoE = Convert.ToInt32(vector[1, 13]);   
+            //Reloj anterior
+            double reloj0 = Convert.ToDouble(vector[0, 2]);
+            //Reloj Actual
+            double reloj1 = Convert.ToDouble(vector[1, 2]);
+            //Tiempo improductividad anterior
+            double TIA = Convert.ToDouble(vector[0, 22]);
+            // Ultimo fin de ensamblaje
+            double UltimoFinEnsamblaje = Convert.ToDouble(vector[0, 11]);
+            
+            // Cuando me ocupo resto mi reloj actual con mi ultimo fin de ensamblaje
+            //para obtener el tiempo que estuve inactivo
+            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)            
+            {
+                TI =  TIA + (reloj1 - UltimoFinEnsamblaje);
 
-            if (estadoE == 0)
-            {
-                //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0, 22];
-                
+                //Si mi ultimo ensamblaje valia 0 no acumulo
+                if (UltimoFinEnsamblaje == 0)
+                {
+                    TI = TIA + (reloj1 - UltimoFinEnsamblaje) - reloj0;
+                }
+             //CHECK POINT
             }
-            else
+            //Si mi estado actual y anterior valen 0 acumulo los tiempo improductivos
+            if (estadoE == 0 && estadoEAnt == 0)
             {
-                //Seria el TI de la fila anterior, ya que esta ocupada
-                TI = vector[0, 22] + vector[1, 2] - vector[0, 2];
+                TI = TIA + reloj1 - reloj0;
+               
             }
+
+            
 
             return TI;
         }
