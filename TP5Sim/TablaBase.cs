@@ -362,6 +362,13 @@ namespace TP5Sim
                         vector[1, 21] = 1;
                     }
 
+                    //otro cambio xd 
+                    if (vector[1, 21] == 0) 
+                    {
+                        vector[1, 20] = 0;
+                    }
+
+
                     //Asigno el valor de inactividad del area Ensamblaje
                     double tiempoEnsamb = tiempoInactividadE(vector);
                     vector[1, 22] = tiempoEnsamb;
