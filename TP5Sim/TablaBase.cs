@@ -382,6 +382,7 @@ namespace TP5Sim
                     break;
 
                 default:
+
                     //Genero la fila 0, de la inicialización
                     for (int i = 0; i < vector.GetLength(1); i++)
                     {

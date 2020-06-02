@@ -53,6 +53,8 @@ namespace TP5Sim
         //Boton
         private void btnSimular_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
+            
             TablaBase genTabla = new TablaBase();
 
             //Variables
@@ -93,7 +95,7 @@ namespace TP5Sim
                 
                 genTabla.generarTabla(vs, tiempoArmazon, limiteSuperiorMotor, limiteInferiorMotor, mediaRuedas, desviacion, tiempoEnsamblajeAM, tiempoEnsamblajeRuedas);
 
-                if (i == 0 || (i >= Convert.ToInt32(txtDesde.Text) && i < Convert.ToInt32(txtHasta.Text)))
+                if (i == 0 || ( (i + 1) >= Convert.ToInt32(txtDesde.Text) && i < Convert.ToInt32(txtHasta.Text)))
                 {
                     Herramientas.matrizAGrid2(vs, dataGridView1, 6);
                 }
