@@ -136,6 +136,8 @@ namespace TP5Sim
                     //Asigno el valor de la Cola Maxima Ruedas
                     vector[1, 27] = colaMaximaRuedas(vector);
 
+                    vector[1, 0] = vector[0, 0] + 1;
+
 
                     break;
 
@@ -198,6 +200,8 @@ namespace TP5Sim
                     //Asigno el valor de la Cola Maxima Ruedas
                     vector[1, 27] = colaMaximaRuedas(vector);
 
+                    vector[1, 0] = vector[0, 0] + 1;
+
                     break;
                     
                 //Proximo ensamblaje
@@ -253,6 +257,8 @@ namespace TP5Sim
 
                     //Asigno el valor de la Cola Maxima Ruedas
                     vector[1, 27] = colaMaximaRuedas(vector);
+
+                    vector[1, 0] = vector[0, 0] + 1;
 
                     break;
 
@@ -313,6 +319,10 @@ namespace TP5Sim
                         //Asigno el valor de la Cola Maxima Ruedas
                         vector[1, 27] = colaMaximaRuedas(vector);
 
+                        vector[1, 0] = vector[0, 0] + 1;
+
+
+
                         break;
 
                 //Fin Area Ruedas
@@ -367,6 +377,8 @@ namespace TP5Sim
                     //Asigno el valor de la Cola Maxima Ruedas
                     vector[1, 27] = colaMaximaRuedas(vector);
 
+                    vector[1, 0] = vector[0, 0] + 1;
+
                     break;
 
                 default:
@@ -390,7 +402,11 @@ namespace TP5Sim
                     break;
             }
 
+           
         }
+
+        
+
         //Esta funcion recorre el vector de estado y devuelve el tiempo menor para determinar el proximo evento por venir
         private double[] buscarMenor(double[,] vector)
         {
