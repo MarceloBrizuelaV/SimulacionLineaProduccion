@@ -80,14 +80,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtEnsamblajeRuedas = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSimular
             // 
-            this.btnSimular.Location = new System.Drawing.Point(630, 548);
+            this.btnSimular.Location = new System.Drawing.Point(1234, 683);
+            this.btnSimular.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSimular.Name = "btnSimular";
-            this.btnSimular.Size = new System.Drawing.Size(138, 36);
+            this.btnSimular.Size = new System.Drawing.Size(184, 44);
             this.btnSimular.TabIndex = 1;
             this.btnSimular.Text = "Simular";
             this.btnSimular.UseVisualStyleBackColor = true;
@@ -95,41 +98,46 @@
             // 
             // txtDesde
             // 
-            this.txtDesde.Location = new System.Drawing.Point(556, 377);
+            this.txtDesde.Location = new System.Drawing.Point(1127, 565);
+            this.txtDesde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(118, 20);
+            this.txtDesde.Size = new System.Drawing.Size(156, 22);
             this.txtDesde.TabIndex = 2;
             // 
             // txtHasta
             // 
-            this.txtHasta.Location = new System.Drawing.Point(721, 377);
+            this.txtHasta.Location = new System.Drawing.Point(1347, 565);
+            this.txtHasta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtHasta.Name = "txtHasta";
-            this.txtHasta.Size = new System.Drawing.Size(118, 20);
+            this.txtHasta.Size = new System.Drawing.Size(156, 22);
             this.txtHasta.TabIndex = 3;
             this.txtHasta.TextChanged += new System.EventHandler(this.TxtHasta_TextChanged);
             // 
             // txtCantidadSim
             // 
-            this.txtCantidadSim.Location = new System.Drawing.Point(556, 427);
+            this.txtCantidadSim.Location = new System.Drawing.Point(1242, 634);
+            this.txtCantidadSim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCantidadSim.Name = "txtCantidadSim";
-            this.txtCantidadSim.Size = new System.Drawing.Size(118, 20);
+            this.txtCantidadSim.Size = new System.Drawing.Size(156, 22);
             this.txtCantidadSim.TabIndex = 4;
             // 
             // labelDesde
             // 
             this.labelDesde.AutoSize = true;
-            this.labelDesde.Location = new System.Drawing.Point(560, 362);
+            this.labelDesde.Location = new System.Drawing.Point(1124, 544);
+            this.labelDesde.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDesde.Name = "labelDesde";
-            this.labelDesde.Size = new System.Drawing.Size(38, 13);
+            this.labelDesde.Size = new System.Drawing.Size(49, 17);
             this.labelDesde.TabIndex = 5;
             this.labelDesde.Text = "Desde";
             // 
             // labelHasta
             // 
             this.labelHasta.AutoSize = true;
-            this.labelHasta.Location = new System.Drawing.Point(725, 363);
+            this.labelHasta.Location = new System.Drawing.Point(1344, 544);
+            this.labelHasta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHasta.Name = "labelHasta";
-            this.labelHasta.Size = new System.Drawing.Size(35, 13);
+            this.labelHasta.Size = new System.Drawing.Size(45, 17);
             this.labelHasta.TabIndex = 6;
             this.labelHasta.Text = "Hasta";
             this.labelHasta.Click += new System.EventHandler(this.LabelHasta_Click);
@@ -137,9 +145,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(553, 411);
+            this.label1.Location = new System.Drawing.Point(1238, 614);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 13);
+            this.label1.Size = new System.Drawing.Size(171, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Cantidad de Simulaciones";
             this.label1.Click += new System.EventHandler(this.Label1_Click);
@@ -179,11 +188,12 @@
             this.Column28,
             this.Column29,
             this.Column30});
-            this.dataGridView1.Location = new System.Drawing.Point(10, 18);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 22);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1246, 341);
+            this.dataGridView1.Size = new System.Drawing.Size(1661, 421);
             this.dataGridView1.TabIndex = 8;
             // 
             // Column1
@@ -421,130 +431,165 @@
             // chkValOriginales
             // 
             this.chkValOriginales.AutoSize = true;
-            this.chkValOriginales.Location = new System.Drawing.Point(242, 380);
+            this.chkValOriginales.Location = new System.Drawing.Point(171, 482);
+            this.chkValOriginales.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkValOriginales.Name = "chkValOriginales";
-            this.chkValOriginales.Size = new System.Drawing.Size(141, 17);
+            this.chkValOriginales.Size = new System.Drawing.Size(188, 21);
             this.chkValOriginales.TabIndex = 9;
             this.chkValOriginales.Text = "Utilizar valores originales";
             this.chkValOriginales.UseVisualStyleBackColor = true;
             // 
             // txtLimiteInferior
             // 
-            this.txtLimiteInferior.Location = new System.Drawing.Point(263, 449);
+            this.txtLimiteInferior.Location = new System.Drawing.Point(724, 565);
+            this.txtLimiteInferior.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLimiteInferior.Name = "txtLimiteInferior";
-            this.txtLimiteInferior.Size = new System.Drawing.Size(100, 20);
+            this.txtLimiteInferior.Size = new System.Drawing.Size(132, 22);
             this.txtLimiteInferior.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(260, 427);
+            this.label2.Location = new System.Drawing.Point(720, 538);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.Size = new System.Drawing.Size(133, 17);
             this.label2.TabIndex = 11;
             this.label2.Text = "Limite Inferior Motor";
             // 
             // txtLimiteMaximo
             // 
-            this.txtLimiteMaximo.Location = new System.Drawing.Point(399, 449);
+            this.txtLimiteMaximo.Location = new System.Drawing.Point(905, 565);
+            this.txtLimiteMaximo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLimiteMaximo.Name = "txtLimiteMaximo";
-            this.txtLimiteMaximo.Size = new System.Drawing.Size(100, 20);
+            this.txtLimiteMaximo.Size = new System.Drawing.Size(132, 22);
             this.txtLimiteMaximo.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(396, 427);
+            this.label3.Location = new System.Drawing.Point(901, 538);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 13);
+            this.label3.Size = new System.Drawing.Size(136, 17);
             this.label3.TabIndex = 13;
             this.label3.Text = "Limite Maximo Motor";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(260, 488);
+            this.label4.Location = new System.Drawing.Point(720, 613);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.Size = new System.Drawing.Size(99, 17);
             this.label4.TabIndex = 14;
             this.label4.Text = "Media Ruedas";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(396, 488);
+            this.label5.Location = new System.Drawing.Point(901, 613);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 13);
+            this.label5.Size = new System.Drawing.Size(191, 17);
             this.label5.TabIndex = 15;
             this.label5.Text = "Desviacion Estandar Ruedas";
             // 
             // txtMediaRuedas
             // 
-            this.txtMediaRuedas.Location = new System.Drawing.Point(263, 505);
+            this.txtMediaRuedas.Location = new System.Drawing.Point(724, 634);
+            this.txtMediaRuedas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtMediaRuedas.Name = "txtMediaRuedas";
-            this.txtMediaRuedas.Size = new System.Drawing.Size(100, 20);
+            this.txtMediaRuedas.Size = new System.Drawing.Size(132, 22);
             this.txtMediaRuedas.TabIndex = 16;
             // 
             // txtDesviacionRuedas
             // 
-            this.txtDesviacionRuedas.Location = new System.Drawing.Point(399, 505);
+            this.txtDesviacionRuedas.Location = new System.Drawing.Point(905, 634);
+            this.txtDesviacionRuedas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDesviacionRuedas.Name = "txtDesviacionRuedas";
-            this.txtDesviacionRuedas.Size = new System.Drawing.Size(100, 20);
+            this.txtDesviacionRuedas.Size = new System.Drawing.Size(132, 22);
             this.txtDesviacionRuedas.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(73, 427);
+            this.label6.Location = new System.Drawing.Point(510, 538);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 13);
+            this.label6.Size = new System.Drawing.Size(190, 17);
             this.label6.TabIndex = 18;
             this.label6.Text = "Tiempo de Llegada Armazon";
             // 
             // txtLlegadaArmazon
             // 
-            this.txtLlegadaArmazon.Location = new System.Drawing.Point(76, 449);
+            this.txtLlegadaArmazon.Location = new System.Drawing.Point(514, 565);
+            this.txtLlegadaArmazon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLlegadaArmazon.Name = "txtLlegadaArmazon";
-            this.txtLlegadaArmazon.Size = new System.Drawing.Size(100, 20);
+            this.txtLlegadaArmazon.Size = new System.Drawing.Size(132, 22);
             this.txtLlegadaArmazon.TabIndex = 19;
             // 
             // txtEnsamblajeAM
             // 
-            this.txtEnsamblajeAM.Location = new System.Drawing.Point(76, 504);
+            this.txtEnsamblajeAM.Location = new System.Drawing.Point(514, 632);
+            this.txtEnsamblajeAM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEnsamblajeAM.Name = "txtEnsamblajeAM";
-            this.txtEnsamblajeAM.Size = new System.Drawing.Size(100, 20);
+            this.txtEnsamblajeAM.Size = new System.Drawing.Size(132, 22);
             this.txtEnsamblajeAM.TabIndex = 20;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(73, 488);
+            this.label7.Location = new System.Drawing.Point(510, 613);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(132, 13);
+            this.label7.Size = new System.Drawing.Size(175, 17);
             this.label7.TabIndex = 21;
             this.label7.Text = "Tiempo de ensamblaje AM";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(73, 538);
+            this.label8.Location = new System.Drawing.Point(511, 673);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(138, 13);
+            this.label8.Size = new System.Drawing.Size(184, 17);
             this.label8.TabIndex = 22;
             this.label8.Text = "Tiempo ensamblaje Ruedas";
             // 
             // txtEnsamblajeRuedas
             // 
-            this.txtEnsamblajeRuedas.Location = new System.Drawing.Point(76, 554);
+            this.txtEnsamblajeRuedas.Location = new System.Drawing.Point(513, 694);
+            this.txtEnsamblajeRuedas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEnsamblajeRuedas.Name = "txtEnsamblajeRuedas";
-            this.txtEnsamblajeRuedas.Size = new System.Drawing.Size(100, 20);
+            this.txtEnsamblajeRuedas.Size = new System.Drawing.Size(132, 22);
             this.txtEnsamblajeRuedas.TabIndex = 23;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(35, 510);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(459, 225);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Valores originales del ejercicio";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(500, 510);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(617, 225);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Parametros modificables";
             // 
             // FormPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 596);
+            this.ClientSize = new System.Drawing.Size(1712, 747);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtEnsamblajeRuedas);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -568,6 +613,8 @@
             this.Controls.Add(this.txtHasta);
             this.Controls.Add(this.txtDesde);
             this.Controls.Add(this.btnSimular);
+            this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormPrincipal";
             this.ShowIcon = false;
             this.Text = "Simulador de Produccion de Triciclos";
@@ -631,6 +678,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtEnsamblajeRuedas;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 
