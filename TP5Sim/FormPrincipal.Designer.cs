@@ -65,7 +65,21 @@
             this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkValOriginales = new System.Windows.Forms.CheckBox();
+            this.txtLimiteInferior = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLimiteMaximo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtMediaRuedas = new System.Windows.Forms.TextBox();
+            this.txtDesviacionRuedas = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtLlegadaArmazon = new System.Windows.Forms.TextBox();
+            this.txtEnsamblajeAM = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtEnsamblajeRuedas = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,8 +178,7 @@
             this.Column27,
             this.Column28,
             this.Column29,
-            this.Column30,
-            this.Column19});
+            this.Column30});
             this.dataGridView1.Location = new System.Drawing.Point(10, 18);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -405,17 +418,148 @@
             this.Column30.ReadOnly = true;
             this.Column30.Width = 125;
             // 
-            // Column19
+            // chkValOriginales
             // 
-            this.Column19.HeaderText = "TI E AC";
-            this.Column19.Name = "Column19";
-            this.Column19.ReadOnly = true;
+            this.chkValOriginales.AutoSize = true;
+            this.chkValOriginales.Location = new System.Drawing.Point(242, 380);
+            this.chkValOriginales.Name = "chkValOriginales";
+            this.chkValOriginales.Size = new System.Drawing.Size(141, 17);
+            this.chkValOriginales.TabIndex = 9;
+            this.chkValOriginales.Text = "Utilizar valores originales";
+            this.chkValOriginales.UseVisualStyleBackColor = true;
+            // 
+            // txtLimiteInferior
+            // 
+            this.txtLimiteInferior.Location = new System.Drawing.Point(263, 449);
+            this.txtLimiteInferior.Name = "txtLimiteInferior";
+            this.txtLimiteInferior.Size = new System.Drawing.Size(100, 20);
+            this.txtLimiteInferior.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(260, 427);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Limite Inferior Motor";
+            // 
+            // txtLimiteMaximo
+            // 
+            this.txtLimiteMaximo.Location = new System.Drawing.Point(399, 449);
+            this.txtLimiteMaximo.Name = "txtLimiteMaximo";
+            this.txtLimiteMaximo.Size = new System.Drawing.Size(100, 20);
+            this.txtLimiteMaximo.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(396, 427);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Limite Maximo Motor";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(260, 488);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Media Ruedas";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(396, 488);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Desviacion Estandar Ruedas";
+            // 
+            // txtMediaRuedas
+            // 
+            this.txtMediaRuedas.Location = new System.Drawing.Point(263, 505);
+            this.txtMediaRuedas.Name = "txtMediaRuedas";
+            this.txtMediaRuedas.Size = new System.Drawing.Size(100, 20);
+            this.txtMediaRuedas.TabIndex = 16;
+            // 
+            // txtDesviacionRuedas
+            // 
+            this.txtDesviacionRuedas.Location = new System.Drawing.Point(399, 505);
+            this.txtDesviacionRuedas.Name = "txtDesviacionRuedas";
+            this.txtDesviacionRuedas.Size = new System.Drawing.Size(100, 20);
+            this.txtDesviacionRuedas.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(73, 427);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(142, 13);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Tiempo de Llegada Armazon";
+            // 
+            // txtLlegadaArmazon
+            // 
+            this.txtLlegadaArmazon.Location = new System.Drawing.Point(76, 449);
+            this.txtLlegadaArmazon.Name = "txtLlegadaArmazon";
+            this.txtLlegadaArmazon.Size = new System.Drawing.Size(100, 20);
+            this.txtLlegadaArmazon.TabIndex = 19;
+            // 
+            // txtEnsamblajeAM
+            // 
+            this.txtEnsamblajeAM.Location = new System.Drawing.Point(76, 504);
+            this.txtEnsamblajeAM.Name = "txtEnsamblajeAM";
+            this.txtEnsamblajeAM.Size = new System.Drawing.Size(100, 20);
+            this.txtEnsamblajeAM.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(73, 488);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(132, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Tiempo de ensamblaje AM";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(73, 538);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(138, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Tiempo ensamblaje Ruedas";
+            // 
+            // txtEnsamblajeRuedas
+            // 
+            this.txtEnsamblajeRuedas.Location = new System.Drawing.Point(76, 554);
+            this.txtEnsamblajeRuedas.Name = "txtEnsamblajeRuedas";
+            this.txtEnsamblajeRuedas.Size = new System.Drawing.Size(100, 20);
+            this.txtEnsamblajeRuedas.TabIndex = 23;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 596);
+            this.Controls.Add(this.txtEnsamblajeRuedas);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtEnsamblajeAM);
+            this.Controls.Add(this.txtLlegadaArmazon);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtDesviacionRuedas);
+            this.Controls.Add(this.txtMediaRuedas);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtLimiteMaximo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtLimiteInferior);
+            this.Controls.Add(this.chkValOriginales);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelHasta);
@@ -472,7 +616,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column28;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column29;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.CheckBox chkValOriginales;
+        private System.Windows.Forms.TextBox txtLimiteInferior;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtLimiteMaximo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtMediaRuedas;
+        private System.Windows.Forms.TextBox txtDesviacionRuedas;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtLlegadaArmazon;
+        private System.Windows.Forms.TextBox txtEnsamblajeAM;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtEnsamblajeRuedas;
     }
 }
 
