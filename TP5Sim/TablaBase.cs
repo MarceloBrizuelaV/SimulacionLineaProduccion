@@ -11,12 +11,6 @@ namespace TP5Sim
 {
     class TablaBase
     {
-        private static double cont = 0;
-        private static double contN = 0;
-        private static bool bandera = false;
-        private static bool banderaPrimera = true;
-        private static bool banderaSegunda = true;
-
         private static bool nuevosRandom = true;
         /*
         //Posiciones de las columnas
@@ -127,16 +121,14 @@ namespace TP5Sim
                     }
 
 
-
-
-
+                        
+                    
+                    
 
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    //double tiempoEnsamblaje = tiempoInactividadE(vector);
-                    double tiempoEnsamblaje = tiE(vector);
-                    cont = cont + tiempoEnsamblaje;
-                    vector[1, 22] = cont;
+                    double tiempoEnsamblaje = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamblaje;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRuedas = tiempoInactividadAR(vector);
@@ -200,10 +192,8 @@ namespace TP5Sim
                     vector[1, 8] = tiempoLlegada + vector[1, 2];
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    //double tiempoEnsamblaj = tiempoInactividadE(vector);
-                    double tiempoEnsamblaj = tiE(vector);
-                    cont = cont + tiempoEnsamblaj;
-                    vector[1, 22] = cont;
+                    double tiempoEnsamblaj = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamblaj;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRueda = tiempoInactividadAR(vector);
@@ -264,10 +254,8 @@ namespace TP5Sim
                     }
 
                     //Asigno el valor de inactividad del area Ensamblaje
-                    //double tiempoEnsambla = tiempoInactividadE(vector);
-                    double tiempoEnsambla = tiE(vector);
-                    cont = cont + tiempoEnsambla;
-                    vector[1, 22] = cont;
+                    double tiempoEnsambla = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsambla;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRued = tiempoInactividadAR(vector);
@@ -327,10 +315,9 @@ namespace TP5Sim
                             }
                         }
 
-                    //Asigno el valor de inactividad del area Ensamblaje
-                    //double tiempoEnsambl = tiempoInactividadE(vector);
-                    double tiempoEnsambl = tiE(vector);
-                    vector[1, 22] = tiempoEnsambl;
+                        //Asigno el valor de inactividad del area Ensamblaje
+                        double tiempoEnsambl = tiempoInactividadE(vector);
+                        vector[1, 22] = tiempoEnsambl;
 
                         //Asigno el valor de inactividad del area Ruedas
                         double tiempoAreaRue = tiempoInactividadAR(vector);
@@ -370,13 +357,24 @@ namespace TP5Sim
 
                         //Resto la cantidad de ruedas utilizadas
                         vector[1, 18] = vector[0,18] - 3;
+
+                        //Asigno estado ocupado al area de ruedas -- cambio xD
+                        vector[1, 21] = 1;
                     }
 
+                    /*otro cambio xd 
+                     si mi estado actual es 0 (sin trabajar) no se cuando voy a largar el proximo triciclo
+                     por lo tanto dejo el valor en 0 para que no afecte a los tiempos de improductividad
+                     y se calcule correctamente el tiempo de inactividad del area de ruedas*/
+                    if (vector[1, 21] == 0) 
+                    {
+                        vector[1, 20] = 0;
+                    }
+
+
                     //Asigno el valor de inactividad del area Ensamblaje
-                    //double tiempoEnsamb = tiempoInactividadE(vector);
-                    double tiempoEnsamb = tiE(vector);
-                    cont = cont + tiempoEnsamb;
-                    vector[1, 22] = cont;
+                    double tiempoEnsamb = tiempoInactividadE(vector);
+                    vector[1, 22] = tiempoEnsamb;
 
                     //Asigno el valor de inactividad del area Ruedas
                     double tiempoAreaRu = tiempoInactividadAR(vector);
@@ -466,68 +464,110 @@ namespace TP5Sim
         //Estado OCUPADO = 1
         public double tiempoInactividadAR(double[,] vector)
         {
-            double TI = 0;
+            /* Posiciones de las columnas
+            2=Reloj 
+            16=Tiempo llegada R 
+            17= Proxima llegada R 
+            18= Stock R 
+            19= Tiempo ensamblaje AR 
+            20= Proximo Triciclo AR  
+            21 = Estado AR            
+            23= TI area rueda */
 
-            //Tiempo de inactividad del Area de Ruedas
-            int estadoEAct = Convert.ToInt32(vector[1, 21]);
+            double TIR = Convert.ToDouble(vector[0, 23]);
 
-            if (estadoEAct == 0)
+            int estadoEAnt = Convert.ToInt32(vector[0, 21]);
+            //estado ensamblaje actual
+            int estadoE = Convert.ToInt32(vector[1, 21]);
+            //Reloj anterior
+            double reloj0 = Convert.ToDouble(vector[0, 2]);
+            //Reloj Actual
+            double reloj1 = Convert.ToDouble(vector[1, 2]);
+            //Tiempo improductividad anterior
+            double TIRA = Convert.ToDouble(vector[0, 23]);
+            // Ultimo fin de ensamblaje
+            double UltimoFinEnsamblaje = Convert.ToDouble(vector[0, 20]);
+
+            // Cuando me ocupo resto mi reloj actual con mi ultimo fin de ensamblaje
+            //para obtener el tiempo que estuve inactivo
+            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)
             {
-                //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0, 23];
-                
+                TIR = TIRA + (reloj1 - UltimoFinEnsamblaje);
+
+                //Si mi ultimo ensamblaje valia 0 no acumulo
+                if (UltimoFinEnsamblaje == 0)
+                {
+                    TIR = TIRA + (reloj1 - UltimoFinEnsamblaje) - reloj0;
+                }
+                //CHECK POINT
             }
-            else
+            //Si mi estado actual y anterior valen 0 acumulo los tiempo improductivos
+            if (estadoE == 0 && estadoEAnt == 0)
             {
-                //Seria el TI de la fila anterior, ya que esta ocupado.
-                TI = vector[0, 23] + vector[1, 2] - vector[0, 2];
+                TIR = TIRA + reloj1 - reloj0;
+
             }
-    
-            return TI;
+
+            return TIR;
+            /* double TI = 0;
+
+             //Tiempo de inactividad del Area de Ruedas
+             int estadoEAct = Convert.ToInt32(vector[1, 21]);
+
+             if (estadoEAct == 0)
+             {
+                 //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
+                 TI = vector[0, 23];
+
+             }
+             else
+             {
+                 //Seria el TI de la fila anterior, ya que esta ocupado.
+                 TI = vector[0, 23] + vector[1, 2] - vector[0, 2];
+             }
+
+             return TI;*/
+
         }
 
-
-        public double tiE(double[,] vector)
-        {
-            //Agrego el primer valor
-            double TI = Convert.ToDouble(vector[0, 22]);
-
-            //Tiempo de inactividad del Area de ensamblaje
-            int estadoE = Convert.ToInt32(vector[1, 13]);
-            double reloj = Convert.ToDouble(vector[1, 2]);
-
-            if (estadoE == 1 && reloj >= vector[0, 11])
-            {
-                TI = vector[1, 2] - vector[0, 11];
-            }
-            if (estadoE == 0)
-            {
-                TI = vector[1, 2] - vector[0, 11];
-            }
-
-            return TI;
-
-
-        }
         public double tiempoInactividadE(double[,] vector) 
         {
-            double TI = 0;
+            double TI = Convert.ToDouble(vector[0,22]);
 
-            //Tiempo de inactividad del Area de ensamblaje
-            int estadoE = Convert.ToInt32(vector[1, 13]);
+            //estado ensamblaje anterior
+            int estadoEAnt = Convert.ToInt32(vector[0, 13]);
+            //estado ensamblaje actual
+            int estadoE = Convert.ToInt32(vector[1, 13]);   
+            //Reloj anterior
+            double reloj0 = Convert.ToDouble(vector[0, 2]);
+            //Reloj Actual
+            double reloj1 = Convert.ToDouble(vector[1, 2]);
+            //Tiempo improductividad anterior
+            double TIA = Convert.ToDouble(vector[0, 22]);
+            // Ultimo fin de ensamblaje
+            double UltimoFinEnsamblaje = Convert.ToDouble(vector[0, 11]);
+            
+            // Cuando me ocupo resto mi reloj actual con mi ultimo fin de ensamblaje
+            //para obtener el tiempo que estuve inactivo
+            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)            
+            {
+                TI =  TIA + (reloj1 - UltimoFinEnsamblaje);
 
-            if (estadoE == 0)
-            {
-                //Seria el TI de la fila anterior mas el reloj anterior menos el inicial
-                TI = vector[0, 22] + vector[1, 2] - vector[0, 11];
-                
-                
+                //Si mi ultimo ensamblaje valia 0 no acumulo
+                if (UltimoFinEnsamblaje == 0)
+                {
+                    TI = TIA + (reloj1 - UltimoFinEnsamblaje) - reloj0;
+                }
+             //CHECK POINT
             }
-            else
+            //Si mi estado actual y anterior valen 0 acumulo los tiempo improductivos
+            if (estadoE == 0 && estadoEAnt == 0)
             {
-                //Seria el TI de la fila anterior, ya que esta ocupada
-                TI = vector[0, 22];
+                TI = TIA + reloj1 - reloj0;
+               
             }
+
+            
 
             return TI;
         }
@@ -539,7 +579,7 @@ namespace TP5Sim
             double tiRuedas = vector[1,23];
             double tiEnsamblaje = vector[1,22];
 
-            double tit = tiRuedas + tiEnsamblaje + vector[0,24];
+            double tit = tiRuedas + tiEnsamblaje;
 
             return tit;
         }

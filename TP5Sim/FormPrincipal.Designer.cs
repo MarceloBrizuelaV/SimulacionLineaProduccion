@@ -65,6 +65,7 @@
             this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,7 +164,8 @@
             this.Column27,
             this.Column28,
             this.Column29,
-            this.Column30});
+            this.Column30,
+            this.Column19});
             this.dataGridView1.Location = new System.Drawing.Point(10, 18);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -403,6 +405,12 @@
             this.Column30.ReadOnly = true;
             this.Column30.Width = 125;
             // 
+            // Column19
+            // 
+            this.Column19.HeaderText = "TI E AC";
+            this.Column19.Name = "Column19";
+            this.Column19.ReadOnly = true;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,6 +472,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column28;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column29;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
     }
 }
 
