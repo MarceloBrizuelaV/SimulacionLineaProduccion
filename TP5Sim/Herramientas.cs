@@ -47,8 +47,6 @@ namespace TP5Sim
                         break;
                 }
             }
-            
-
         }
 
         public static void setearEvento(DataGridView grilla) 
