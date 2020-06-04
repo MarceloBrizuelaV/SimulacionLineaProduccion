@@ -126,6 +126,7 @@ namespace TP5Sim
             //Se muestra la ultima fila
             Herramientas.matrizAGrid2(vs, dataGridView1, 4);
             Herramientas.setearEvento(dataGridView1);
+            Herramientas.setearTipoEstado(dataGridView1);
 
 
             //Calculo los valores
