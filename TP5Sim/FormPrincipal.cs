@@ -98,6 +98,10 @@ namespace TP5Sim
                 if (i == 0 || ( (i + 1) >= Convert.ToInt32(txtDesde.Text) && i < Convert.ToInt32(txtHasta.Text)))
                 {
                     Herramientas.matrizAGrid2(vs, dataGridView1, 6);
+                    Herramientas.setearTipoEstado(dataGridView1);
+                    Herramientas.setearEvento(dataGridView1);
+
+
                 }
 
 
@@ -121,6 +125,23 @@ namespace TP5Sim
 
             //Se muestra la ultima fila
             Herramientas.matrizAGrid2(vs, dataGridView1, 6);
+            Herramientas.setearEvento(dataGridView1);
+
+
+            //Calculo los valores
+            double[] valores = new double[2];
+            valores = genTabla.calcularPorcentajes(dataGridView1);
+
+            txtPorEnsamblej.Text = Herramientas.TruncadoMarcelo(valores[0],2).ToString() + "%";
+            txtPorAreaRuedas.Text = Herramientas.TruncadoMarcelo(valores[1], 2).ToString() + "%";
+
+            //Obtengo la cantidad de triciclos y la muestro
+            txtCantTriciclos.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[25].Value.ToString();
+
+            //Obtengo las colas maximas y las muestro
+            txtCantMaxRuedas.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[27].Value.ToString();
+            txtCantMaxMotores.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[26].Value.ToString();
+            txtCantMaxAM.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[28].Value.ToString();
 
 
         }

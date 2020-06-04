@@ -650,5 +650,20 @@ namespace TP5Sim
             }
         }
 
+        public double[] calcularPorcentajes(System.Windows.Forms.DataGridView grilla) 
+        {
+            double valorGridEnsamblaje = Convert.ToDouble(grilla.Rows[grilla.Rows.Count-1].Cells[22].Value);
+            double valorGridAreaRuedas = Convert.ToDouble(grilla.Rows[grilla.Rows.Count-1].Cells[23].Value);
+            double reloj = Convert.ToDouble(grilla.Rows[grilla.Rows.Count-1].Cells[2].Value);
+
+            double[] valores = new double[2];
+
+            valores[0] = (valorGridEnsamblaje * 100) / reloj;
+            valores[1] = (valorGridAreaRuedas * 100) / reloj;
+
+            return valores;
+            
+        }
+
     }
 }

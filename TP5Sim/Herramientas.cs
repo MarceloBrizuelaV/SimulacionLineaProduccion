@@ -15,22 +15,70 @@ namespace TP5Sim
             return (Math.Truncate(valor * factor)) / factor;
         }
 
-        public static String setearTipoDia(double val)
+        public static void setearTipoEstado(DataGridView grilla)
         {
-            String err = "";
-            switch (Convert.ToInt32(val))
-            {
-                case 1:
-                    return "Soleado";
-                    break;
-                case 2:
-                    return "Nublado";
-                    break;
-                default:
-                    break;
-            }
-            return err;
 
+            for (int i = 0; i < grilla.Rows.Count; i++)
+            {
+                switch (grilla.Rows[i].Cells[13].Value)
+                {
+                    case "0":
+                        grilla.Rows[i].Cells[13].Value = "Libre";
+                        break;
+                    case "1":
+                        grilla.Rows[i].Cells[13].Value = "Ocupado";
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            for (int i = 0; i < grilla.Rows.Count; i++)
+            {
+                switch (grilla.Rows[i].Cells[21].Value)
+                {
+                    case "0":
+                        grilla.Rows[i].Cells[21].Value = "Libre";
+                        break;
+                    case "1":
+                        grilla.Rows[i].Cells[21].Value = "Ocupado";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+
+        }
+
+        public static void setearEvento(DataGridView grilla) 
+        {
+            for (int i = 0; i < grilla.Rows.Count; i++)
+            {
+                switch (grilla.Rows[i].Cells[1].Value)
+                {
+                    case "0":
+                        grilla.Rows[i].Cells[1].Value = "Inicializacion";
+                        break;
+                    case "4":
+                        grilla.Rows[i].Cells[1].Value = "Llegada_Armazon";
+                        break;
+                    case "8":
+                        grilla.Rows[i].Cells[1].Value = "Llegada_Motor";
+                        break;
+                    case "17":
+                        grilla.Rows[i].Cells[1].Value = "Llegada_Ruedas";
+                        break;
+                    case "11":
+                        grilla.Rows[i].Cells[1].Value = "Fin_Ensamblaje";
+                        break;
+                    case "20":
+                        grilla.Rows[i].Cells[1].Value = "Fin_Area_Rueda";
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         public static void matrizAGrid(double[,] matriz, System.Windows.Forms.DataGridView dataGridView, int ordenTruncado)
@@ -86,7 +134,11 @@ namespace TP5Sim
                 data.Rows.Add();
                 for (int i = 0; i < vs.GetLength(1); i++)
                 {
-                    data.Rows[data.Rows.Count - 1].Cells[i].Value = TruncadoMarcelo(vs[0, i], ordenTruncado).ToString();
+
+                  
+                      data.Rows[data.Rows.Count - 1].Cells[i].Value = TruncadoMarcelo(vs[0, i], ordenTruncado).ToString();
+                    
+                    
                 }
             }
             else
