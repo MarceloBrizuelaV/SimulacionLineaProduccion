@@ -84,12 +84,14 @@ namespace TP5Sim
                 limiteInferiorMotor = Convert.ToDouble(txtLimiteInferior.Text);
                 mediaRuedas = Convert.ToDouble(txtMediaRuedas.Text);
                 desviacion = Convert.ToDouble(txtDesviacionRuedas.Text);
-                tiempoEnsamblajeAM = Convert.ToDouble(txtEnsamblajeAM.Text);
-                tiempoEnsamblajeRuedas = Convert.ToDouble(txtEnsamblajeRuedas.Text);
+                tiempoEnsamblajeAM = Convert.ToDouble(txtEnsamblajeAM.Text) + 0.0001;
+                tiempoEnsamblajeRuedas = Convert.ToDouble(txtEnsamblajeRuedas.Text) + 0.0003;
             }
 
 
             double[,] vs = genTabla.generarVector();
+
+
             for (int i = 0; i < Convert.ToInt32(txtCantidadSim.Text); i++)
             {
                 
@@ -100,8 +102,6 @@ namespace TP5Sim
                     Herramientas.matrizAGrid2(vs, dataGridView1, 6);
                     Herramientas.setearTipoEstado(dataGridView1);
                     Herramientas.setearEvento(dataGridView1);
-
-
                 }
 
 
