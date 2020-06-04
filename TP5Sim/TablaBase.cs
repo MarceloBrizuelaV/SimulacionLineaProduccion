@@ -482,7 +482,7 @@ namespace TP5Sim
 
             // Cuando me ocupo resto mi reloj actual con mi ultimo fin de ensamblaje
             //para obtener el tiempo que estuve inactivo
-            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)
+            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje && estadoEAnt == 0)
             {
                 TIR = TIRA;
                 // TIR = TIRA + (reloj1 - UltimoFinEnsamblaje);
