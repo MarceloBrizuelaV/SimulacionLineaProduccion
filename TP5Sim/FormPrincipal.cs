@@ -79,7 +79,7 @@ namespace TP5Sim
             }
             else
             {
-                tiempoArmazon = Convert.ToDouble(txtLlegadaArmazon.Text);
+                tiempoArmazon = Convert.ToDouble(txtLlegadaArmazon.Text) + 0.0002;
                 limiteSuperiorMotor = Convert.ToDouble(txtLimiteMaximo.Text);
                 limiteInferiorMotor = Convert.ToDouble(txtLimiteInferior.Text);
                 mediaRuedas = Convert.ToDouble(txtMediaRuedas.Text);

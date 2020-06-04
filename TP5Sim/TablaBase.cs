@@ -238,6 +238,7 @@ namespace TP5Sim
                     {
                         //Cambiamos el estado del area de ensamblaje a libre
                         vector[1, 13] = 0;
+                        vector[1, 11] = 0;
                     }
 
                     //Asigno el valor de inactividad del area Ensamblaje
@@ -483,7 +484,8 @@ namespace TP5Sim
             //para obtener el tiempo que estuve inactivo
             if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)
             {
-                TIR = TIRA + (reloj1 - UltimoFinEnsamblaje);
+                TIR = TIRA;
+                // TIR = TIRA + (reloj1 - UltimoFinEnsamblaje);
 
                 //Si mi ultimo ensamblaje valia 0 no acumulo
                 if (UltimoFinEnsamblaje == 0)
@@ -495,7 +497,7 @@ namespace TP5Sim
             //Si mi estado actual y anterior valen 0 acumulo los tiempo improductivos
             if (estadoE == 0 && estadoEAnt == 0)
             {
-                TIR = TIRA + reloj1 - reloj0;
+                TIR = TIRA + (reloj1 - reloj0);
 
             }
 
@@ -540,9 +542,10 @@ namespace TP5Sim
             
             // Cuando me ocupo resto mi reloj actual con mi ultimo fin de ensamblaje
             //para obtener el tiempo que estuve inactivo
-            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje)            
+            if (estadoE == 1 && reloj1 >= UltimoFinEnsamblaje && estadoEAnt == 0)            
             {
-                TI =  TIA + (reloj1 - UltimoFinEnsamblaje);
+                TI =  TIA + (reloj1 - reloj0);
+                //TI =  TIA + (reloj1 - UltimoFinEnsamblaje);
 
                 //Si mi ultimo ensamblaje valia 0 no acumulo
                 if (UltimoFinEnsamblaje == 0)
@@ -556,6 +559,11 @@ namespace TP5Sim
             {
                 TI = TIA + reloj1 - reloj0;
                
+            }
+
+            if (estadoE == 1 && estadoEAnt == 1 && reloj1 >= UltimoFinEnsamblaje) 
+            {
+                TI = TIA;
             }
 
             
