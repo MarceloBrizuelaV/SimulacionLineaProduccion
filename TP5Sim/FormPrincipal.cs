@@ -69,7 +69,7 @@ namespace TP5Sim
             //En caso de ser True, utiliza los valores oringinales del ejercicio
             if (chkValOriginales.Checked)
             {
-                tiempoArmazon = Convert.ToDouble(10.0001);
+                tiempoArmazon = Convert.ToDouble(10.00001);
                 limiteSuperiorMotor = Convert.ToDouble(40);
                 limiteInferiorMotor = Convert.ToDouble(30);
                 mediaRuedas = Convert.ToDouble(70);
@@ -79,13 +79,13 @@ namespace TP5Sim
             }
             else
             {
-                tiempoArmazon = Convert.ToDouble(txtLlegadaArmazon.Text) + 0.0002;
+                tiempoArmazon = Convert.ToDouble(txtLlegadaArmazon.Text) + 0.00002;
                 limiteSuperiorMotor = Convert.ToDouble(txtLimiteMaximo.Text);
                 limiteInferiorMotor = Convert.ToDouble(txtLimiteInferior.Text);
                 mediaRuedas = Convert.ToDouble(txtMediaRuedas.Text);
                 desviacion = Convert.ToDouble(txtDesviacionRuedas.Text);
-                tiempoEnsamblajeAM = Convert.ToDouble(txtEnsamblajeAM.Text) + 0.0001;
-                tiempoEnsamblajeRuedas = Convert.ToDouble(txtEnsamblajeRuedas.Text) + 0.0003;
+                tiempoEnsamblajeAM = Convert.ToDouble(txtEnsamblajeAM.Text) + 0.00001;
+                tiempoEnsamblajeRuedas = Convert.ToDouble(txtEnsamblajeRuedas.Text) + 0.00003;
             }
 
 
@@ -99,7 +99,7 @@ namespace TP5Sim
 
                 if (i == 0 || ( (i + 1) >= Convert.ToInt32(txtDesde.Text) && i < Convert.ToInt32(txtHasta.Text)))
                 {
-                    Herramientas.matrizAGrid2(vs, dataGridView1, 6);
+                    Herramientas.matrizAGrid2(vs, dataGridView1, 4);
                     Herramientas.setearTipoEstado(dataGridView1);
                     Herramientas.setearEvento(dataGridView1);
                 }
@@ -124,7 +124,7 @@ namespace TP5Sim
             }
 
             //Se muestra la ultima fila
-            Herramientas.matrizAGrid2(vs, dataGridView1, 6);
+            Herramientas.matrizAGrid2(vs, dataGridView1, 4);
             Herramientas.setearEvento(dataGridView1);
 
 

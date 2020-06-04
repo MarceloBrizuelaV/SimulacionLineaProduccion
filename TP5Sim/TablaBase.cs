@@ -68,6 +68,13 @@ namespace TP5Sim
 
             double[] vectorMenor = buscarMenor(vector);
 
+            double random = rnd.NextDouble();
+
+            if (vector[0, 6] == random)
+            {
+                random = rnd.NextDouble();
+            }
+            
             //Obtengo el evento
             vector[1, 1] = vectorMenor[0];
             //Obtengo el reloj
@@ -170,7 +177,7 @@ namespace TP5Sim
                     }
 
                     //Calculo la proxima llegada de motores
-                    double random = rnd.NextDouble();
+                    
                     int limiteInf = Convert.ToInt32(limiteMinMotor);
                     int limiteSup = Convert.ToInt32(limiteMaxMotor);
                     double tiempoLlegada = generador.Uniforme(limiteInf, limiteSup, random);

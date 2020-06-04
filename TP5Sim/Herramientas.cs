@@ -132,11 +132,7 @@ namespace TP5Sim
                 data.Rows.Add();
                 for (int i = 0; i < vs.GetLength(1); i++)
                 {
-
-                  
-                      data.Rows[data.Rows.Count - 1].Cells[i].Value = TruncadoMarcelo(vs[0, i], ordenTruncado).ToString();
-                    
-                    
+                      data.Rows[data.Rows.Count - 1].Cells[i].Value = TruncadoMarcelo(vs[0, i], ordenTruncado).ToString();   
                 }
             }
             else
