@@ -28,6 +28,9 @@ namespace TP5Sim
                     case "1":
                         grilla.Rows[i].Cells[13].Value = "Ocupado";
                         break;
+                    case "3":
+                        grilla.Rows[i].Cells[13].Value = "Purgando";
+                        break;
                     default:
                         break;
                 }
@@ -35,13 +38,13 @@ namespace TP5Sim
 
             for (int i = 0; i < grilla.Rows.Count; i++)
             {
-                switch (grilla.Rows[i].Cells[21].Value)
+                switch (grilla.Rows[i].Cells[24].Value)
                 {
                     case "0":
-                        grilla.Rows[i].Cells[21].Value = "Libre";
+                        grilla.Rows[i].Cells[24].Value = "Libre";
                         break;
                     case "1":
-                        grilla.Rows[i].Cells[21].Value = "Ocupado";
+                        grilla.Rows[i].Cells[24].Value = "Ocupado";
                         break;
                     default:
                         break;
@@ -64,13 +67,19 @@ namespace TP5Sim
                     case "8":
                         grilla.Rows[i].Cells[1].Value = "Llegada_Motor";
                         break;
-                    case "17":
+                    case "20":
                         grilla.Rows[i].Cells[1].Value = "Llegada_Ruedas";
                         break;
                     case "11":
                         grilla.Rows[i].Cells[1].Value = "Fin_Ensamblaje";
                         break;
-                    case "20":
+                    case "14":
+                        grilla.Rows[i].Cells[1].Value = "Inestabilidad";
+                        break;
+                    case "15":
+                        grilla.Rows[i].Cells[1].Value = "Fin_Purga";
+                        break;
+                    case "23":
                         grilla.Rows[i].Cells[1].Value = "Fin_Area_Rueda";
                         break;
                     default:

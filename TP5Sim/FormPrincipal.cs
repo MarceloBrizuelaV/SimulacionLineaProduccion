@@ -95,7 +95,7 @@ namespace TP5Sim
             for (int i = 0; i < Convert.ToInt32(txtCantidadSim.Text); i++)
             {
                 
-                genTabla.generarTabla(vs, tiempoArmazon, limiteSuperiorMotor, limiteInferiorMotor, mediaRuedas, desviacion, tiempoEnsamblajeAM, tiempoEnsamblajeRuedas);
+                genTabla.generarTabla(vs, tiempoArmazon, limiteSuperiorMotor, limiteInferiorMotor, mediaRuedas, desviacion, tiempoEnsamblajeAM, tiempoEnsamblajeRuedas, 20);
 
                 if (i == 0 || ( (i + 1) >= Convert.ToInt32(txtDesde.Text) && i < Convert.ToInt32(txtHasta.Text)))
                 {
@@ -137,12 +137,12 @@ namespace TP5Sim
             txtPorAreaRuedas.Text = Herramientas.TruncadoMarcelo(valores[1], 2).ToString() + "%";
 
             //Obtengo la cantidad de triciclos y la muestro
-            txtCantTriciclos.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[25].Value.ToString();
+            txtCantTriciclos.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[28].Value.ToString();
 
             //Obtengo las colas maximas y las muestro
-            txtCantMaxRuedas.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[27].Value.ToString();
-            txtCantMaxMotores.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[26].Value.ToString();
-            txtCantMaxAM.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[28].Value.ToString();
+            txtCantMaxRuedas.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[30].Value.ToString();
+            txtCantMaxMotores.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[29].Value.ToString();
+            txtCantMaxAM.Text = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[31].Value.ToString();
 
 
         }
