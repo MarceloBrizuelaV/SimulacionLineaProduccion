@@ -59,7 +59,7 @@ namespace TP5Sim
         }
 
 
-        public void generarTabla(double[,] vector, double tiempoArmazon, double limiteMaxMotor, double limiteMinMotor, double mediaRuedas, double desviacionEstRuedas, double tiempoEnsamblajeAM, double tiempoEnsamblajeRuedas, double tiempoInterrupcion)
+        public void generarTabla(double[,] vector, double tiempoArmazon, double limiteMaxMotor, double limiteMinMotor, double mediaRuedas, double desviacionEstRuedas, double tiempoEnsamblajeAM, double tiempoEnsamblajeRuedas, double tiempoInterrupcion, double t50, double t70, double t100)
         {
             GeneradorVariables generador = new GeneradorVariables();
             Random rnd = new Random();
@@ -320,7 +320,7 @@ namespace TP5Sim
                 case 15:
                     vector[1, 11] = Herramientas.TruncadoMarcelo(vector[1, 2] + vector[0, 16], 4);
                     vector[1, 16] = 0;
-                    vector[1, 14] = Herramientas.TruncadoMarcelo(vector[1, 2] + probabilidadPurga(402.3, 461.1, 523.39), 4);
+                    vector[1, 14] = Herramientas.TruncadoMarcelo(vector[1, 2] + probabilidadPurga(t50, t70, t100), 4);
                     vector[1, 15] = 0;
                     vector[1, 13] = 1;
 
@@ -485,7 +485,7 @@ namespace TP5Sim
                     vector[0, 6] = rnd.NextDouble();
                     vector[0, 7] = generador.Uniforme(Convert.ToInt32(limiteMinMotor), Convert.ToInt32(limiteMaxMotor), vector[0,6]);
                     vector[0, 8] = vector[0, 2] + vector[0, 7];
-                    vector[0, 14] = vector[0, 2] + probabilidadPurga(402.3, 461.1, 523.39);
+                    vector[0, 14] = vector[0, 2] + probabilidadPurga(t50, t70, t100);
                     vector[0, 17] = rnd.NextDouble();
                     vector[0, 18] = rnd.NextDouble();
                     nuevosRandom = !nuevosRandom;

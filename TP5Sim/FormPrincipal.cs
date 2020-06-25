@@ -95,7 +95,7 @@ namespace TP5Sim
             for (int i = 0; i < Convert.ToInt32(txtCantidadSim.Text); i++)
             {
                 
-                genTabla.generarTabla(vs, tiempoArmazon, limiteSuperiorMotor, limiteInferiorMotor, mediaRuedas, desviacion, tiempoEnsamblajeAM, tiempoEnsamblajeRuedas, 20);
+                genTabla.generarTabla(vs, tiempoArmazon, limiteSuperiorMotor, limiteInferiorMotor, mediaRuedas, desviacion, tiempoEnsamblajeAM, tiempoEnsamblajeRuedas, 20, 320.2, 366.9, 416.47);
 
                 if (i == 0 || ( (i + 1) >= Convert.ToInt32(txtDesde.Text) && i < Convert.ToInt32(txtHasta.Text)))
                 {

@@ -344,9 +344,9 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Location = new System.Drawing.Point(10, 414);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(260, 183);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
@@ -408,9 +408,9 @@
             // groupBox2
             // 
             this.groupBox2.Location = new System.Drawing.Point(283, 414);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(463, 183);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
@@ -647,7 +647,7 @@
             // 
             // inestable
             // 
-            this.inestable.HeaderText = "Inestable (402,3 - 461,1 - 523,39)";
+            this.inestable.HeaderText = "Inestable (320,2 - 366,9 - 416.47)";
             this.inestable.Name = "inestable";
             this.inestable.ReadOnly = true;
             // 
